@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!--Meta-->
+  <meta charset="UTF8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, shrink-to-fit=no"
+  />
+  <!--Internal Files-->
+  <link rel="stylesheet" href="style.css" />
+  <!--External Files-->
+  <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+    crossorigin="anonymous"
+  />
+  <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.15.5/dist/bootstrap-table.min.css">
+  <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+  />
+
+  <head>
+    <title>Database Project | Home</title>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="index.html">The Database</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navToggler"
+        aria-controls="navToggler"
+        aria-expanded="false"
+        aria-label="Open Menu"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end">
+        <ul class="nav justify-content-end">
+          <li class="nav-item">
+            <a
+              class="nav-link list-group-item list-group-item-action active border-0 "
+              href="#home"
+              role="tab"
+              data-toggle="list"
+              >Home <span class="sr-only">(current)</span></a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link list-group-item list-group-item-action border-0"
+              href="#add"
+              role="tab"
+              data-toggle="list"
+              >Add</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link list-group-item list-group-item-action border-0"
+              href="#view"
+              role="tab"
+              data-toggle="list"
+              >View</a
+            >
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div class="pos-f-t">
+      <div class="collapse" id="navToggler">
+        <div
+          class="list-group list-group-horizontal"
+          id="navList"
+          role="tablist"
+        >
+          <a
+            href="#home"
+            class="list-group-item list-group-item-action"
+            role="tab"
+            data-toggle="list"
+            >Home <span class="sr-only">(current)</span></a
+          >
+          <a
+            href="#add"
+            class="list-group-item list-group-item-action"
+            role="tab"
+            data-toggle="list"
+            >Add Entity</a
+          >
+          <a
+            href="#view"
+            class="list-group-item list-group-item-action"
+            role="tab"
+            data-toggle="list"
+            >View Table</a
+          >
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="tab-content">
+        <div class="tab-pane active" id="home" role="tabpanel">
+          <h1 class="text-center p-3">Name of the Database Topic</h1>
+          <form method="POST" action="test.php" role="search">
+            <div class="input-group mb-3">
+              <input
+                type="text"
+                class="field form-control"
+                placeholder="Search entity here"
+                name="entity"
+                aria-label="entity"
+                aria-describedby="entity-search"
+                value=""
+              />
+              <span class="input-group-append">
+                <button
+                  class="btn btn-secondary btn-search"
+                  id="searchsubmit"
+                  type="submit"
+                >
+                  Search
+                </button>
+              </span>
+            </div>
+          </form>
+        </div>
+        <div class="tab-pane" id="add" role="tabpanel">
+          <p>Add</p>
+        </div>
+        <div class="tab-pane" id="view" role="tabpanel">
+          <p>View</p>
+          <table class="table table-bordered table-hover table-sm table-condensed bg-white">
+            <thead><tr><th title="Field #1">#</th>
+            <th title="Field #2">Category 1</th>
+            <th title="Field #3">Category 2</th>
+            <th title="Field #4">Category 3</th>
+            <th title="Field #5">Catergory 4</th>
+            </tr></thead>
+            <tbody><tr>
+            <td align="right">0</td>
+            <td> AAAA</td>
+            <td> BBBB</td>
+            <td> CCCC</td>
+            <td> DDDD</td>
+            </tr>
+            <tr>
+            <td align="right">1</td>
+            <td> AAAB</td>
+            <td> BBBC</td>
+            <td> CCCD</td>
+            <td> DDDA</td>
+            </tr>
+            <tr>
+            <td align="right">2</td>
+            <td> AABA</td>
+            <td> BBCB</td>
+            <td> CCDC</td>
+            <td> DDAD</td>
+            </tr>
+            <tr>
+            <td align="right">3</td>
+            <td> AABB</td>
+            <td> BBCC</td>
+            <td> CCDD</td>
+            <td> DDAA</td>
+            </tr>
+            <tr>
+            <td align="right">4</td>
+            <td> ABAA</td>
+            <td> BCBB</td>
+            <td> CDCC</td>
+            <td> DADD</td>
+            </tr>
+            <tr>
+            <td align="right">5</td>
+            <td> ABAB</td>
+            <td> BCBC</td>
+            <td> CDCD</td>
+            <td> DADA</td>
+            </tr>
+            <tr>
+            <td align="right">6</td>
+            <td> ABBA</td>
+            <td> BCCB</td>
+            <td> CDDC</td>
+            <td> DAAD</td>
+            </tr>
+            <tr>
+            <td align="right">7</td>
+            <td> ABBB</td>
+            <td> BCCC</td>
+            <td> CDDD</td>
+            <td> DAAA</td>
+            </tr>
+            <tr>
+            <td align="right">8</td>
+            <td> BAAA</td>
+            <td> CBBB</td>
+            <td> DCCC</td>
+            <td> ADDD</td>
+            </tr>
+            <tr>
+            <td align="right">9</td>
+            <td> BAAB</td>
+            <td> CBBC</td>
+            <td> DCCD</td>
+            <td> ADDA</td>
+            </tr>
+            </tbody></table>
+        </div>
+      </div>
+    </div>
+  </body>
+  <!--Javascript-->
+  <!--External Files-->
+  <script
+    src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"
+  ></script>
+  <script src="https://unpkg.com/bootstrap-table@1.15.5/dist/bootstrap-table.min.js"></script>
+  <script src="https://unpkg.com/bootstrap-table@1.15.5/dist/locale/bootstrap-table-zh-CN.min.js"></script>
+  <!--Internal Files-->
+  <script src="JavaScript/index.js"></script>
+</html>
