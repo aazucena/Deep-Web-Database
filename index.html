@@ -1,217 +1,523 @@
 <!DOCTYPE html>
 <html lang="en">
-<!--Meta-->
-<meta charset="UTF8" />
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-<!--Internal Files-->
-<link rel="stylesheet" href="style.css" />
-<!--External Files-->
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-  integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.15.5/dist/bootstrap-table.min.css">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <!--Meta-->
+  <meta charset="UTF8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, shrink-to-fit=no"
+  />
+  <!--Internal Files-->
+  <link rel="stylesheet" href="style.css" />
+  <!--External Files-->
+  <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+    crossorigin="anonymous"
+  />
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/bootstrap-table@1.15.5/dist/bootstrap-table.min.css"
+  />
+  <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+  />
 
-<head>
-  <title>Underground | Home</title>
-</head>
+  <head>
+    <title>Underground | Home</title>
+  </head>
 
-<body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark nav-pills ">
-    <a class="navbar-brand" href="index.html">The Underground</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navToggler"
-      aria-controls="navToggler" aria-expanded="false" aria-label="Open Menu">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse justify-content-end">
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark nav-pills ">
+      <a class="navbar-brand" href="index.html">The Underground</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navToggler"
+        aria-controls="navToggler"
+        aria-expanded="false"
+        aria-label="Open Menu"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end">
+        <ul class="nav justify-content-end">
+          <li class="nav-item">
+            <a
+              class="nav-link active border-0 btn-outline-light"
+              href="#home"
+              role="tab"
+              data-toggle="list"
+              >Home <span class="sr-only">(current)</span></a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link border-0 btn-outline-light"
+              href="#add"
+              role="tab"
+              data-toggle="list"
+              >Add</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link border-0 btn-outline-light"
+              href="#view"
+              role="tab"
+              data-toggle="list"
+              >View</a
+            >
+          </li>
+        </ul>
+      </div>
       <ul class="nav justify-content-end">
         <li class="nav-item">
-          <a class="nav-link active border-0 btn-outline-light" href="#home" role="tab" data-toggle="list">Home
-            <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link border-0 btn-outline-light" href="#add" role="tab" data-toggle="list">Add</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link border-0 btn-outline-light" href="#view" role="tab" data-toggle="list">View</a>
+          <a
+            class="nav-link border-0 btn btn-sm btn-circle btn-outline-light d-flex justify-content-center align-items-center"
+            style="overflow: hidden;"
+            href="#account"
+            role="tab"
+            data-toggle="modal"
+            ><i class="fa fa-user" style="font-size: 1.8em;"></i
+          ></a>
         </li>
       </ul>
-    </div>
-  </nav>
-  <div class="pos-f-t">
-    <div class="collapse" id="navToggler">
-      <div class="list-group list-group-horizontal list-group-dark" id="navList" role="tablist">
-        <a href="#home" class="list-group-item list-group-item-dark list-group-item-action" role="tab"
-          data-toggle="list">Home <span class="sr-only">(current)</span></a>
-        <a href="#add" class="list-group-item list-group-item-dark list-group-item-action" role="tab"
-          data-toggle="list">Add Entity</a>
-        <a href="#view" class="list-group-item list-group-item-dark list-group-item-action" role="tab"
-          data-toggle="list">View Table</a>
+    </nav>
+    <div class="pos-f-t">
+      <div class="collapse" id="navToggler">
+        <div
+          class="list-group list-group-horizontal list-group-dark"
+          id="navList"
+          role="tablist"
+        >
+          <a
+            href="#home"
+            class="list-group-item list-group-item-dark list-group-item-action"
+            role="tab"
+            data-toggle="list"
+            >Home <span class="sr-only">(current)</span></a
+          >
+          <a
+            href="#add"
+            class="list-group-item list-group-item-dark list-group-item-action"
+            role="tab"
+            data-toggle="list"
+            >Add Entity</a
+          >
+          <a
+            href="#view"
+            class="list-group-item list-group-item-dark list-group-item-action"
+            role="tab"
+            data-toggle="list"
+            >View Table</a
+          >
+        </div>
       </div>
     </div>
-  </div>
-  <div class="container">
-    <div class="tab-content">
-      <div class="tab-pane active" id="home" role="tabpanel">
-        <h1 class="text-center p-3 text-white">Underground</h1>
-        <form method="POST" action="test.php" role="search">
-          <div class="form-group input-group mb-3">
-            <input type="text" class="field form-control" placeholder="Search here..." name="entity" aria-label="entity"
-              aria-describedby="entity-search" value="" />
-            <span class="input-group-append">
-              <button class="btn btn-secondary btn-search" id="searchsubmit" type="submit">
-                Search
-              </button>
-            </span>
-          </div>
-          <fieldset class="form-group">
-            <div class="row">
-              <legend class="col-form-label col-sm-2 pt-0 text-white">Categories: </legend>
-              <div class="col-sm-10lma">
-                <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1"
-                    checked>
-                  <label class="form-check-label text-white" for="gridRadios1">
-                    First radio
-                  </label>
+    <div class="container">
+      <div class="tab-content">
+        <div class="tab-pane active" id="home" role="tabpanel">
+          <h1 class="text-center p-3 text-white">Underground</h1>
+          <form method="POST" action="test.php" role="search">
+            <div class="form-group input-group mb-3">
+              <input
+                type="text"
+                class="field form-control"
+                placeholder="Search here..."
+                name="entity"
+                aria-label="entity"
+                aria-describedby="entity-search"
+                value=""
+              />
+              <span class="input-group-append">
+                <button
+                  class="btn btn-secondary btn-search"
+                  id="searchsubmit"
+                  type="submit"
+                >
+                  Search
+                </button>
+              </span>
+            </div>
+            <fieldset class="form-group">
+              <div class="row">
+                <legend class="col-form-label col-sm-2 pt-0 text-white">
+                  Categories:
+                </legend>
+                <div class="col-sm-10lma">
+                  <div class="form-check form-check-inline">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="gridRadios"
+                      id="gridRadios1"
+                      value="option1"
+                      checked
+                    />
+                    <label
+                      class="form-check-label text-white"
+                      for="gridRadios1"
+                    >
+                      First radio
+                    </label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="gridRadios"
+                      id="gridRadios2"
+                      value="option2"
+                    />
+                    <label
+                      class="form-check-label text-white"
+                      for="gridRadios2"
+                    >
+                      Second radio
+                    </label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="gridRadios"
+                      id="gridRadios3"
+                      value="option3"
+                    />
+                    <label
+                      class="form-check-label text-white"
+                      for="gridRadios3"
+                    >
+                      Third radio
+                    </label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="gridRadios"
+                      id="gridRadios4"
+                      value="option4"
+                    />
+                    <label
+                      class="form-check-label text-white"
+                      for="gridRadios4"
+                    >
+                      Fourth radio
+                    </label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="gridRadios"
+                      id="gridRadios5"
+                      value="option5"
+                    />
+                    <label
+                      class="form-check-label text-white"
+                      for="gridRadios5"
+                    >
+                      Fifth radio
+                    </label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="gridRadios"
+                      id="gridRadios6"
+                      value="option6"
+                    />
+                    <label
+                      class="form-check-label text-white"
+                      for="gridRadios6"
+                    >
+                      Sixth radio
+                    </label>
+                  </div>
                 </div>
-                <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
-                  <label class="form-check-label text-white" for="gridRadios2">
-                    Second radio
-                  </label>
+              </div>
+            </fieldset>
+          </form>
+        </div>
+        <div class="tab-pane" id="add" role="tabpanel">
+          <p>Add</p>
+        </div>
+        <div class="tab-pane" id="view" role="tabpanel">
+          <p>View</p>
+          <table
+            class="table table-bordered table-hover table-sm table-condensed bg-white"
+          >
+            <thead>
+              <tr>
+                <th title="Field #1">#</th>
+                <th title="Field #2">Category 1</th>
+                <th title="Field #3">Category 2</th>
+                <th title="Field #4">Category 3</th>
+                <th title="Field #5">Catergory 4</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td align="right">0</td>
+                <td>AAAA</td>
+                <td>BBBB</td>
+                <td>CCCC</td>
+                <td>DDDD</td>
+              </tr>
+              <tr>
+                <td align="right">1</td>
+                <td>AAAB</td>
+                <td>BBBC</td>
+                <td>CCCD</td>
+                <td>DDDA</td>
+              </tr>
+              <tr>
+                <td align="right">2</td>
+                <td>AABA</td>
+                <td>BBCB</td>
+                <td>CCDC</td>
+                <td>DDAD</td>
+              </tr>
+              <tr>
+                <td align="right">3</td>
+                <td>AABB</td>
+                <td>BBCC</td>
+                <td>CCDD</td>
+                <td>DDAA</td>
+              </tr>
+              <tr>
+                <td align="right">4</td>
+                <td>ABAA</td>
+                <td>BCBB</td>
+                <td>CDCC</td>
+                <td>DADD</td>
+              </tr>
+              <tr>
+                <td align="right">5</td>
+                <td>ABAB</td>
+                <td>BCBC</td>
+                <td>CDCD</td>
+                <td>DADA</td>
+              </tr>
+              <tr>
+                <td align="right">6</td>
+                <td>ABBA</td>
+                <td>BCCB</td>
+                <td>CDDC</td>
+                <td>DAAD</td>
+              </tr>
+              <tr>
+                <td align="right">7</td>
+                <td>ABBB</td>
+                <td>BCCC</td>
+                <td>CDDD</td>
+                <td>DAAA</td>
+              </tr>
+              <tr>
+                <td align="right">8</td>
+                <td>BAAA</td>
+                <td>CBBB</td>
+                <td>DCCC</td>
+                <td>ADDD</td>
+              </tr>
+              <tr>
+                <td align="right">9</td>
+                <td>BAAB</td>
+                <td>CBBC</td>
+                <td>DCCD</td>
+                <td>ADDA</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div
+      class="modal fade"
+      id="account"
+      role="dialog"
+      aria-labelledby="regristration"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content bg-dark text-white">
+          <div class="modal-tabs">
+            <ul class="nav nav-tabs md-tabs" role="tablist">
+              <li class="nav-item">
+                <a
+                  class="nav-link active border-0 btn-outline-light"
+                  data-toggle="tab"
+                  href="#login"
+                  role="tab"
+                  ><i class="fa fa-user mr-1"></i> Login</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link border-0 btn-outline-light"
+                  data-toggle="tab"
+                  href="#register"
+                  role="tab"
+                  ><i class="fa fa-user-plus mr-1"></i> Register</a
+                >
+              </li>
+            </ul>
+            <div class="tab-content">
+              <div
+                class="tab-pane fade in show active"
+                id="login"
+                role="tabpanel"
+              >
+                <div class="modal-body mb-1">
+                  <div class="form-group">
+                    <div class="md-form form-sm input-group mt-5 mb-5">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1"
+                          ><i class="fa fa-envelope prefix"></i
+                        ></span>
+                      </div>
+                      <input
+                        type="email"
+                        id="modalLRInput10"
+                        class="form-control form-control-sm validate"
+                        placeholder="Email Address"
+                      />
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="md-form form-sm input-group mb-4">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">
+                          <i class="fa fa-lock prefix"></i>
+                        </span>
+                      </div>
+                      <input
+                        type="password"
+                        id="modalLRInput11"
+                        class="form-control form-control-sm validate"
+                        placeholder="Password"
+                      />
+                    </div>
+                  </div>
+                  <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input" id="keepme">
+                    <label class="form-check-label" for="#keepme">Keep me signed in</label>
+                  </div>
+                  <div class="text-center mt-2">
+                    <button class="btn btn-light">
+                      Log in <i class="fa fa-sign-in ml-1"></i>
+                    </button>
+                  </div>
                 </div>
-                <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios3" value="option3">
-                  <label class="form-check-label text-white" for="gridRadios3">
-                    Third radio
-                  </label>
+                <div class="modal-footer">
+                  <div class="options text-center text-md-right mt-1">
+                    <p>
+                      Not a member?
+                      <a href="#register" class="blue-text">Sign Up</a>
+                    </p>
+                    <p>Forgot <a href="#" class="blue-text">Password?</a></p>
+                  </div>
+                  <button
+                    type="button"
+                    class="btn btn-outline-light waves-effect ml-auto"
+                    data-dismiss="modal"
+                  >
+                    Close
+                  </button>
                 </div>
-                <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios4" value="option4">
-                  <label class="form-check-label text-white" for="gridRadios4">
-                    Fourth radio
-                  </label>
+              </div>
+              <div class="tab-pane fade" id="register" role="tabpanel">
+                <div class="modal-body">
+                  <div class="md-form form-sm input-group mb-5">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="basic-addon1"
+                        ><i class="fa fa-envelope prefix"></i
+                      ></span>
+                    </div>
+                    <input
+                      type="email"
+                      id="modalLRInput10"
+                      class="form-control form-control-sm validate"
+                      placeholder="New Email Address"
+                    />
+                  </div>
+                  <div class="md-form form-sm input-group mb-4">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="basic-addon1">
+                        <i class="fa fa-lock prefix"></i>
+                      </span>
+                    </div>
+                    <input
+                      type="password"
+                      id="modalLRInput11"
+                      class="form-control form-control-sm validate"
+                      placeholder="New Password"
+                    />
+                  </div>
+                  <div class="md-form form-sm mb-4">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="basic-addon1">
+                        <i class="fa fa-lock prefix"></i>
+                      </span>
+                    <input
+                      type="password"
+                      id="modalLRInput14"
+                      class="form-control form-control-sm validate"
+                      placeholder="Confirm Password"
+                    />
+                  </div>
+                  <div class="text-center form-sm mt-2">
+                    <button class="btn btn-info">
+                      Sign up <i class="fa fa-sign-in ml-1"></i>
+                    </button>
+                  </div>
                 </div>
-                <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios5" value="option5">
-                  <label class="form-check-label text-white" for="gridRadios5">
-                    Fifth radio
-                  </label>
-                </div>
-                <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios6" value="option6">
-                  <label class="form-check-label text-white" for="gridRadios6">
-                    Sixth radio
-                  </label>
+                <div class="modal-footer">
+                  <div class="options text-right">
+                    <p class="pt-1">
+                      Already have an account?
+                      <a href="#" class="blue-text">Log In</a>
+                    </p>
+                  </div>
+                  <button
+                    type="button"
+                    class="btn btn-outline-info waves-effect ml-auto"
+                    data-dismiss="modal"
+                  >
+                    Close
+                  </button>
                 </div>
               </div>
             </div>
-          </fieldset>
-        </form>
-      </div>
-      <div class="tab-pane" id="add" role="tabpanel">
-        <p>Add</p>
-      </div>
-      <div class="tab-pane" id="view" role="tabpanel">
-        <p>View</p>
-        <table class="table table-bordered table-hover table-sm table-condensed bg-white">
-          <thead>
-            <tr>
-              <th title="Field #1">#</th>
-              <th title="Field #2">Category 1</th>
-              <th title="Field #3">Category 2</th>
-              <th title="Field #4">Category 3</th>
-              <th title="Field #5">Catergory 4</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td align="right">0</td>
-              <td> AAAA</td>
-              <td> BBBB</td>
-              <td> CCCC</td>
-              <td> DDDD</td>
-            </tr>
-            <tr>
-              <td align="right">1</td>
-              <td> AAAB</td>
-              <td> BBBC</td>
-              <td> CCCD</td>
-              <td> DDDA</td>
-            </tr>
-            <tr>
-              <td align="right">2</td>
-              <td> AABA</td>
-              <td> BBCB</td>
-              <td> CCDC</td>
-              <td> DDAD</td>
-            </tr>
-            <tr>
-              <td align="right">3</td>
-              <td> AABB</td>
-              <td> BBCC</td>
-              <td> CCDD</td>
-              <td> DDAA</td>
-            </tr>
-            <tr>
-              <td align="right">4</td>
-              <td> ABAA</td>
-              <td> BCBB</td>
-              <td> CDCC</td>
-              <td> DADD</td>
-            </tr>
-            <tr>
-              <td align="right">5</td>
-              <td> ABAB</td>
-              <td> BCBC</td>
-              <td> CDCD</td>
-              <td> DADA</td>
-            </tr>
-            <tr>
-              <td align="right">6</td>
-              <td> ABBA</td>
-              <td> BCCB</td>
-              <td> CDDC</td>
-              <td> DAAD</td>
-            </tr>
-            <tr>
-              <td align="right">7</td>
-              <td> ABBB</td>
-              <td> BCCC</td>
-              <td> CDDD</td>
-              <td> DAAA</td>
-            </tr>
-            <tr>
-              <td align="right">8</td>
-              <td> BAAA</td>
-              <td> CBBB</td>
-              <td> DCCC</td>
-              <td> ADDD</td>
-            </tr>
-            <tr>
-              <td align="right">9</td>
-              <td> BAAB</td>
-              <td> CBBC</td>
-              <td> DCCD</td>
-              <td> ADDA</td>
-            </tr>
-          </tbody>
-        </table>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</body>
-<!--Javascript-->
-<!--External Files-->
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"
-  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-  integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-  integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/bootstrap-table@1.15.5/dist/bootstrap-table.min.js"></script>
-<script src="https://unpkg.com/bootstrap-table@1.15.5/dist/locale/bootstrap-table-zh-CN.min.js"></script>
-<!--Internal Files-->
-<script src="JavaScript/index.js"></script>
-
+  </body>
+  <!--Javascript-->
+  <!--External Files-->
+  <script
+    src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"
+  ></script>
+  <script src="https://unpkg.com/bootstrap-table@1.15.5/dist/bootstrap-table.min.js"></script>
+  <script src="https://unpkg.com/bootstrap-table@1.15.5/dist/locale/bootstrap-table-zh-CN.min.js"></script>
+  <!--Internal Files-->
+  <script src="JavaScript/index.js"></script>
 </html>
