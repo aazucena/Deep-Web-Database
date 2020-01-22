@@ -388,6 +388,7 @@
                         id="Email"
                         class="form-control form-control-sm validate"
                         placeholder="Email Address"
+                        required
                       />
                     </div> 
                   </div>
@@ -403,6 +404,7 @@
                         id="Pass"
                         class="form-control form-control-sm validate"
                         placeholder="Password"
+                        required
                       />
                     </div>
                   </div>
@@ -436,9 +438,9 @@
               <div class="tab-pane fade" id="register" role="tabpanel">
                 <div class="modal-body">
                   <div class="form-group">
-                    <div class="md-form form-sm input-group mt-5 mb-5">
+                    <div class="md-form form-sm input-group mt-5 mb-4">
                       <div class="input-group-prepend">
-                        <span class="input-group-text" id="eEmail"
+                        <span class="input-group-text" id="nEmail"
                           ><i class="fa fa-envelope prefix"></i
                         ></span>
                       </div>
@@ -447,8 +449,66 @@
                         id="newEmail"
                         class="form-control form-control-sm validate"
                         placeholder="New Email Address"
+                        required
                       />
                     </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="md-form form-sm input-group mb-4">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text" id="nUser"
+                          ><i class="fa fa-user-circle-o prefix"></i
+                        ></span>
+                      </div>
+                      <input
+                        type="text"
+                        id="username"
+                        class="form-control form-control-sm validate rounded-right"
+                        placeholder="Username"
+                        aria-describedby="userHelpInline"
+                        required
+                      />
+                      <small id="userHelpInline" class="text-muted ml-3 mt-1">
+                        *Minimum of 8 characters, must have letters, numbers, and any special characters.
+                      </small>
+                    </div>
+                  </div>
+                  
+                  <div class="row">
+                    <div class="col">
+                  <div class="form-group">
+                    <div class="md-form form-sm input-group mb-4">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text" id="nFName"
+                          ><i class="fa fa-user-o prefix"></i
+                        ></span>
+                      </div>
+                      <input
+                        type="text"
+                        id="fname"
+                        class="form-control form-control-sm validate"
+                        placeholder="First Name (Optional)"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="form-group">
+                    <div class="md-form form-sm input-group mb-4">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text" id="nLName"
+                          ><i class="fa fa-user-o prefix"></i
+                        ></span>
+                      </div>
+                      <input
+                        type="text"
+                        id="lname"
+                        class="form-control form-control-sm validate"
+                        placeholder="Last Name (Optional)"
+                      />
+                    </div>
+                  </div>
+                  </div>
                   </div>
                   <div class="form-group">
                     <div class="md-form form-sm input-group mb-4">
@@ -463,6 +523,7 @@
                         class="form-control form-control-sm validate mx-sm rounded-right"
                         placeholder="New Password"
                         aria-describedby="passwordHelpInline"
+                        required
                       />
                       <small id="passwordHelpInline" class="text-muted ml-3 mt-1">
                         *Must be 8-20 characters long.
@@ -481,11 +542,13 @@
                         id="confirmPass"
                         class="form-control form-control-sm validate"
                         placeholder="Confirm Password"
+                        required
                       />
                     </div>
                   </div>
                   <div class="form-group form-check">
-                    <input type="checkbox" class="form-check-input" id="tc">
+                    <input type="checkbox" class="form-check-input" id="tc"
+                    required>
                     <label class="form-check-label" for="#tc">
                       <a 
                         href="#termsandconditions" 
@@ -522,7 +585,7 @@
           </div>
         </div>
       </div>
-      <!---Registration & Login-->
+      <!--TOS-->
     <div
     class="modal fade"
     id="termsandconditions"
