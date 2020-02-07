@@ -2,13 +2,16 @@ body {
     background-color: #2e2e2e !important;
 }
 
-.container {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    -moz-transform: translateX(-50%) translateY(-50%);
-    -webkit-transform: translateX(-50%) translateY(-50%);
-    transform: translateX(-50%) translateY(-50%);
+a {
+    text-decoration: none !important;
+}
+#adslides{
+    height: 300px;
+    overflow: hidden;
+}
+
+#adslides .carousel-caption {
+    top: 20% !important;
 }
 
 .btn-circle {
@@ -19,6 +22,12 @@ body {
 
 #categories {
     border-color:#DD5246 !important;
+}
+.bg-logored{
+    background-color: #DD5246 !important;
+}
+.border .border-logored{
+    border-color: #DD5246 !important;
 }
 /* ---------------------------------------------------
     CONTENT
