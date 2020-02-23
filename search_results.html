@@ -24,8 +24,30 @@
       aria-controls="navToggler" aria-expanded="false" aria-label="Open Menu">
       <span class="navbar-toggler-icon"></span>
     </button>
+    <ul class="justify-content-end mt-4 ml-5" style="width: 60%">
+      <form method="POST" action="test.php" role="search">
+        <div class="form-group input-group">
+          <input type="text" class="field form-control rounded-left" placeholder="Search here..." name="entity"
+            aria-label="entity" aria-describedby="entity-search" value="" />
+          <div class="input-group-append">
+            <select class="form-control border w-100 rounded-0" id="categories">
+              <option selected>All Catergories</option>
+              <option value="1">One</option>
+              <option value="2">Two</option>
+              <option value="3">Three</option>
+              <option value="4">Four</option>
+              <option value="5">Five</option>
+              <option value="6">Six</option>
+            </select>
+            <button class="btn btn-secondary btn-search" id="searchsubmit" type="submit">
+              Search
+            </button>
+          </div>
+        </div>
+      </form>
+    </ul>
     <div class="collapse navbar-collapse justify-content-end">
-      <ul class="nav justify-content-end">
+      <ul class="nav justify-content-center">
         <li class="nav-item">
           <a class="nav-link active border-0 btn-outline-light" href="#home" role="tab" data-toggle="list">Home <span
               class="sr-only">(current)</span></a>
@@ -39,7 +61,7 @@
       </ul>
     </div>
     <ul class="nav justify-content-end">
-      <li class="nav-item">
+      <li class="nav-item pl-3">
         <a class="nav-link border-0 btn btn-sm btn-circle btn-outline-light d-flex justify-content-center align-items-center"
           style="overflow: hidden;" href="#account" role="tab" data-toggle="modal"><i class="fa fa-user"
             style="font-size: 1.8em;"></i></a>
