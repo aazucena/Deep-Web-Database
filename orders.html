@@ -219,6 +219,7 @@
           <div class="tab-content">
             <div class="tab-pane fade in show active" id="login" role="tabpanel">
               <div class="modal-body mb-1">
+                <form method="POST" action="test.php" role="form">
                 <div class="form-group">
                   <div class="md-form form-sm input-group mt-5 mb-5">
                     <div class="input-group-prepend">
@@ -240,7 +241,7 @@
                   </div>
                 </div>
                 <div class="form-group form-check">
-                  <input type="checkbox" class="form-check-input" id="keepme" />
+                  <input type="checkbox" class="form-check-input" id="keepme">
                   <label class="form-check-label" for="#keepme">Keep me signed in</label>
                 </div>
                 <div class="text-center mt-2">
@@ -248,6 +249,7 @@
                     Log in <i class="fa fa-sign-in ml-1"></i>
                   </button>
                 </div>
+                </form>
               </div>
               <div class="modal-footer">
                 <div class="options text-center text-md-right mt-1">
@@ -264,6 +266,7 @@
             </div>
             <div class="tab-pane fade" id="register" role="tabpanel">
               <div class="modal-body">
+          <form method="POST" action="test.php" role="form">
                 <div class="form-group">
                   <div class="md-form form-sm input-group mt-5 mb-4">
                     <div class="input-group-prepend">
@@ -281,8 +284,7 @@
                     <input type="text" id="username" class="form-control form-control-sm validate rounded-right"
                       placeholder="Username" aria-describedby="userHelpInline" required />
                     <small id="userHelpInline" class="text-muted ml-3 mt-1">
-                      *Minimum of 8 characters, must have letters, numbers,
-                      and any special characters.
+                      *Minimum of 8 characters, must have letters, numbers, and any special characters.
                     </small>
                   </div>
                 </div>
@@ -338,7 +340,7 @@
                   </div>
                 </div>
                 <div class="form-group form-check">
-                  <input type="checkbox" class="form-check-input" id="tc" required />
+                  <input type="checkbox" class="form-check-input" id="tc" required>
                   <label class="form-check-label" for="#tc">
                     <a href="#termsandconditions" data-toggle="modal" role="tab">
                       Agree to Terms & Conditions
@@ -350,7 +352,8 @@
                     Sign up <i class="fa fa-sign-in ml-1"></i>
                   </button>
                 </div>
-              </div>
+              </form>
+            </div>
               <div class="modal-footer">
                 <div class="options text-right">
                   <p class="pt-1">

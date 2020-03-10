@@ -82,7 +82,168 @@
   <div class="position-absolute w-100">
     <div class="tab-content">
       <div class="tab-pane active" id="home" role="tabpanel">
-
+        <div class="container p-3">
+          <form method="POST" action="test.php" role="form">
+          <div class="form-group">
+            <div class="form-md input-group mt-5 mb-4">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="prodName"> </span>
+              </div>
+              <input type="text" id="productName" class="form-control form-control-md validate"
+                placeholder="Product Name"/>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="form-md input-group mb-4">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="pQ"><i class="fa fa-question-circle-o prefix"></i></span>
+              </div>
+              <input type="text" id="why" class="form-control form-control-md validate rounded-right"
+                placeholder="Why are you selling the product here?" />
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="form-md input-group mb-4">
+              <div class="input-group-prepend">
+                <label class="input-group-text" for="selectCategory"><i class="fa fa-bars"></i></label>
+              </div>
+              <select class="custom-select" id="selectCategory">
+                <option selected>Choose Category...</option>
+                <option value="1">Hitmen</option>
+                <option value="2">Substances</option>
+                <option value="3">Exotics</option>
+                <option value="4">Weapons</option>
+              </select>
+            </div>
+          </div>
+          <div id="hitmen" class="cfield">
+            <div class="form-group">
+              <div class="form-md input-group mb-4">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="hName"><i class="fa fa-user-circle-o prefix"></i></span>
+                </div>
+                <input type="text" id="hitName" class="form-control form-control-md validate rounded-right"
+                  placeholder="Name of Hitman" />
+              </div>
+            </div>
+          </div>
+          <div id="substances" class="cfield">
+            <div class="form-group">
+              <div class="form-md input-group mb-4">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="hName"><i class="fa fa-user-circle-o prefix"></i></span>
+                </div>
+                <input type="text" id="hitName" class="form-control form-control-md validate rounded-right"
+                  placeholder="Name of Hitman" />
+              </div>
+            </div>
+          </div>
+          <div id="exotics" class="cfield">
+            <div class="form-group">
+              <div class="form-md input-group mb-4">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="hName"><i class="fa fa-user-circle-o prefix"></i></span>
+                </div>
+                <input type="text" id="hitName" class="form-control form-control-md validate rounded-right"
+                  placeholder="Name of Hitman" />
+              </div>
+            </div>
+          </div>
+          <div id="weapons" class="cfield">
+            <div class="form-group">
+              <div class="form-md input-group mb-4">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="hName"><i class="fa fa-user-circle-o prefix"></i></span>
+                </div>
+                <input type="text" id="hitName" class="form-control form-control-md validate rounded-right"
+                  placeholder="Name of Hitman" />
+              </div>
+            </div>
+          </div>
+          <div class="form-group w-25">
+            <div class="form-md input-group mb-4">
+              <div class="input-group-prepend">
+                <label class="input-group-text" for="condition"><i class="fa fa-cog"></i></label>
+              </div>
+              <select class="custom-select" id="condition">
+                <option selected>Condition of the Product...</option>
+                <option value="1">New</option>
+                <option value="2">New - Open Box</option>
+                <option value="3">Used - Like-New</option>
+                <option value="4">Used - Very Good</option>
+                <option value="5">Used - Good</option>
+                <option value="6">Used - Acceptable</option>
+                <option value="7">Refurbished</option>
+                <option value="8">Renewed</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group w-25">
+            <div class="form-md input-group mb-4">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="pStock"><i class="fa fa-database prefix"></i></span>
+              </div>
+              <input type="number" id="condition" class="form-control form-control-md validate rounded-right"
+                placeholder="Stock Quantity" min="0"/>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <div class="form-group">
+                <div class="form-md input-group mb-4">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="pFname"><i class="fa fa-user-o prefix"></i></span>
+                  </div>
+                  <input type="text" id="fname" class="form-control form-control-md validate"
+                    placeholder="First Name (Optional)" value="Bryant"/>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-group">
+                <div class="form-md input-group mb-4">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="nLName"><i class="fa fa-user-o prefix"></i></span>
+                  </div>
+                  <input type="text" id="lname" class="form-control form-control-md validate"
+                    placeholder="Last Name (Optional)" value="Moreland"/>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="form-md input-group mb-4">
+              <div class="input-group-prepend mx">
+                <span class="input-group-text" id="pPass">
+                  <i class="fa fa-lock prefix"></i>
+                </span>
+              </div>
+              <input type="password" id="pPass"
+                class="form-control form-control-md validate mx-md rounded-right" placeholder="Old Password"
+                aria-describedby="passwordHelpInline" required />
+              <small id="passwordHelpInline" class="text-muted ml-3 mt-1">
+                *Must be 8-20 characters long.
+              </small>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="form-md input-group mb-4">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="cPass">
+                  <i class="fa fa-lock prefix"></i>
+                </span>
+              </div>
+              <input type="password" id="pNewPass" class="form-control form-control-md validate"
+                placeholder="New Password" required />
+            </div>
+          </div>
+          <div class="text-center form-md mt-2">
+            <button class="btn btn-light float-right">
+              Post <i class="fa fa-pencil ml-1"></i>
+            </button>
+          </div>
+        </div>
+      </form>
       </div>
       <div class="tab-pane" id="about" role="tabpanel">
         <p class="text-white">About</p>
@@ -194,6 +355,7 @@
           <div class="tab-content">
             <div class="tab-pane fade in show active" id="login" role="tabpanel">
               <div class="modal-body mb-1">
+                <form method="POST" action="test.php" role="form">
                 <div class="form-group">
                   <div class="md-form form-sm input-group mt-5 mb-5">
                     <div class="input-group-prepend">
@@ -215,7 +377,7 @@
                   </div>
                 </div>
                 <div class="form-group form-check">
-                  <input type="checkbox" class="form-check-input" id="keepme" />
+                  <input type="checkbox" class="form-check-input" id="keepme">
                   <label class="form-check-label" for="#keepme">Keep me signed in</label>
                 </div>
                 <div class="text-center mt-2">
@@ -223,6 +385,7 @@
                     Log in <i class="fa fa-sign-in ml-1"></i>
                   </button>
                 </div>
+                </form>
               </div>
               <div class="modal-footer">
                 <div class="options text-center text-md-right mt-1">
@@ -239,6 +402,7 @@
             </div>
             <div class="tab-pane fade" id="register" role="tabpanel">
               <div class="modal-body">
+          <form method="POST" action="test.php" role="form">
                 <div class="form-group">
                   <div class="md-form form-sm input-group mt-5 mb-4">
                     <div class="input-group-prepend">
@@ -256,8 +420,7 @@
                     <input type="text" id="username" class="form-control form-control-sm validate rounded-right"
                       placeholder="Username" aria-describedby="userHelpInline" required />
                     <small id="userHelpInline" class="text-muted ml-3 mt-1">
-                      *Minimum of 8 characters, must have letters, numbers,
-                      and any special characters.
+                      *Minimum of 8 characters, must have letters, numbers, and any special characters.
                     </small>
                   </div>
                 </div>
@@ -313,7 +476,7 @@
                   </div>
                 </div>
                 <div class="form-group form-check">
-                  <input type="checkbox" class="form-check-input" id="tc" required />
+                  <input type="checkbox" class="form-check-input" id="tc" required>
                   <label class="form-check-label" for="#tc">
                     <a href="#termsandconditions" data-toggle="modal" role="tab">
                       Agree to Terms & Conditions
@@ -325,7 +488,8 @@
                     Sign up <i class="fa fa-sign-in ml-1"></i>
                   </button>
                 </div>
-              </div>
+              </form>
+            </div>
               <div class="modal-footer">
                 <div class="options text-right">
                   <p class="pt-1">

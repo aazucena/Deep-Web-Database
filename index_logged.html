@@ -51,7 +51,7 @@
   <ul id="popover-content" class="list-group bg-dark border-logored" style="display: none">
     <h5 class="text-white">Signed in as: EDP445</h5>
     <hr class="text-white bg-white" />
-    <a href="#" class="list-group-item bg-dark text-logored border-logored">Your Profile</a>
+    <a href="profile.html" class="list-group-item bg-dark text-logored border-logored">Your Profile</a>
     <a href="productlist.html" class="list-group-item bg-dark text-logored border-logored">Your Products</a>
     <a href="#" class="list-group-item bg-dark text-logored border-logored">Your Orders</a>
     <hr class="text-white bg-white" />
@@ -291,6 +291,7 @@
           <div class="tab-content">
             <div class="tab-pane fade in show active" id="login" role="tabpanel">
               <div class="modal-body mb-1">
+                <form method="POST" action="test.php" role="form">
                 <div class="form-group">
                   <div class="md-form form-sm input-group mt-5 mb-5">
                     <div class="input-group-prepend">
@@ -320,6 +321,7 @@
                     Log in <i class="fa fa-sign-in ml-1"></i>
                   </button>
                 </div>
+                </form>
               </div>
               <div class="modal-footer">
                 <div class="options text-center text-md-right mt-1">
@@ -336,6 +338,7 @@
             </div>
             <div class="tab-pane fade" id="register" role="tabpanel">
               <div class="modal-body">
+          <form method="POST" action="test.php" role="form">
                 <div class="form-group">
                   <div class="md-form form-sm input-group mt-5 mb-4">
                     <div class="input-group-prepend">
@@ -421,7 +424,8 @@
                     Sign up <i class="fa fa-sign-in ml-1"></i>
                   </button>
                 </div>
-              </div>
+              </form>
+            </div>
               <div class="modal-footer">
                 <div class="options text-right">
                   <p class="pt-1">
