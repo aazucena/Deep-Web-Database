@@ -5,7 +5,8 @@ body {
 a {
     text-decoration: none !important;
 }
-#adslides{
+
+#adslides {
     height: 300px;
     overflow: hidden;
 }
@@ -16,25 +17,83 @@ a {
 
 .btn-circle {
     border-radius: 50% !important;
-    height: 40px;
-    width: 40px;
+    width: 50px;
+    height: 50px;
+    padding: 10px 16px;
+    font-size: 24px;
+    line-height: 1.33;
 }
 
 #categories {
-    border-color:#DD5246 !important;
-}
-.bg-logored{
-    background-color: #DD5246 !important;
-}
-.border .border-logored{
     border-color: #DD5246 !important;
 }
+
+.text-logored {
+    color: #DD5246 !important;
+}
+
+.bg-logored {
+    background-color: #DD5246 !important;
+}
+
+.border .border-logored {
+    border-color: #DD5246 !important;
+}
+
 /* ---------------------------------------------------
     CONTENT
 ----------------------------------------------------- */
-#price{
+#price {
     font-size: 2rem;
 }
+
+.popover-body {
+    background-color: #212529 !important;
+    border-color: #DD5246 !important;
+}
+
+.btn-logo {
+    font-size: 24px;
+    line-height: 1.33;
+    color: #fff !important;
+    background-color: #DD5246 !important;
+    border-color: #FF3333;
+}
+
+.btn-logo:hover {
+    color: #fff !important;
+    background-color: rgb(177, 69, 59) !important;
+    border-color: rgb(177, 69, 59);
+}
+
+.btn-logo .focus,
+.btn-logo:focus {
+    box-shadow: 0 0 0 .2rem rgba(255, 51, 51, .5) !important;
+}
+
+.btn-logo.disabled,
+.btn-logo:disabled {
+    color: #fff !important;
+    background-color: #DD5246 !important;
+    border-color: #FF3333;
+}
+
+.btn-logo:not(:disabled):not(.disabled).active,
+.btn-logo:not(:disabled):not(.disabled):active,
+.show>.btn-logo .dropdown-toggle {
+    color: #fff !important;
+    background-color: #DD5246;
+    border-color: #FF3333;
+}
+
+.btn-logo:not(:disabled):not(.disabled).active:focus,
+.btn-logo:not(:disabled):not(.disabled):active:focus,
+.show>.btn-logo .dropdown-toggle:focus {
+    box-shadow: 0 0 0 .2rem rgba(255, 51, 51, .5) !important;
+}
+
+
+
 /* ---------------------------------------------------
     MEDIA
 ----------------------------------------------------- */

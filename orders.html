@@ -81,37 +81,33 @@
   </div>
   <div class="position-absolute w-100">
     <div class="tab-content">
-      <div class="tab-pane active" id="home" role="tabpanel">
-        <div class="container-fluid text-white p-3 clearfix">
-          <div class="float-left">0 Results for <b>""</b></div>
-          <div class="float-right">
-            Sorted by:
-            <select id="sort">
-              <option value="recent">Recent</option>
-              <option value="old">Old</option>
-              <option value="alpha">A-Z</option>
-            </select>
-          </div>
+      <div class="tab-pane active text-white container p-5" id="home" role="tabpanel">
+        <h1>Your Orders</h1>
+        <div class="pb-4">
+          <span id="ototal" style="font-size:1.25rem;">1 total orders placed in </span>
+          <select name="osort" style="width: 25%;">
+            <option value="1">Past 30 days</option>
+            <option value="2">Past six months</option>
+            <option value="3">2019</option>
+          </select>
         </div>
-        <div class="container-fluid text-white">
-          <div class="row">
-            <div class="col-2 bg-secondary p-4">
-              <ul class="list-unstyled">
-                <li>Price range:</li>
-                <li></li>
-              </ul>
-            </div>
-            <div class="col-10 border border-logored p-3">
-              <div class="card card-inverse text-white bg-transparent p-1 border border-logored" style="width: 12rem;">
-                <img class=" card-img-top img-responsive" src="Images&Videos/logo.png" alt="Card image cap">
-                <div class="card-body">
-                  <h5 class="card-title">Insert Product Name</h5>
-                  <p>0 BTC for 10%</p>
-                </div>
+        <ul class="list-group bg-dark">
+          <li class="list-group-item bg-dark p-3 border border-white">
+            <div class="card bg-dark">
+              <div class="clearfix card-header border border-logored">
+                <div class="float-left">Order placed on <br><span id="odate">March 5, 2020</span></div>
+                <div class="float-right">Order #<span id="oid">0001231</span><br><a href="#">Invoice</a></div>
               </div>
-            </div>
-          </div>
-        </div>
+              <div class=" media bg-dark border border-logored">
+                <a href="product.html"><img class="img-responsive p-2"
+                    src="https://az836796.vo.msecnd.net/media/image/product/en/medium/0006202000005.jpg"
+                    alt="Kinder Surprise" /></a>
+                <div class="media-body card-body">
+                  <h3 class="mt-0"><a href="product.html">Kinder Surprise Egg Toy Chocolate</a></h3>
+                  <h4 id="oprice" class="">16 BTC</h4><br />
+                </div>
+          </li>
+        </ul>
       </div>
       <div class="tab-pane" id="about" role="tabpanel">
         <p class="text-white">About</p>

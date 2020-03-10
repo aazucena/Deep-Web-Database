@@ -81,35 +81,124 @@
   </div>
   <div class="position-absolute w-100">
     <div class="tab-content">
-      <div class="tab-pane active" id="home" role="tabpanel">
-        <div class="container-fluid text-white p-3 clearfix">
-          <div class="float-left">0 Results for <b>""</b></div>
-          <div class="float-right">
-            Sorted by:
-            <select id="sort">
-              <option value="recent">Recent</option>
-              <option value="old">Old</option>
-              <option value="alpha">A-Z</option>
-            </select>
+      <div class="tab-pane active text-white container p-5" id="home" role="tabpanel">
+        <h1>Your Products</h1>
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+          <li class="nav-item bg-dark">
+            <a class="nav-link active text-logored" id="sale-tab" data-toggle="tab" href="#sale" role="tab"
+              aria-controls="home" aria-selected="true">Sale</a>
+          </li>
+          <li class="nav-item bg-dark">
+            <a class="nav-link text-logored" id="sold-tab" data-toggle="tab" href="#sold" role="tab"
+              aria-controls="profile" aria-selected="false">Sold</a>
+          </li>
+          <li class="nav-item bg-dark">
+            <a class="nav-link text-logored" id="archived-tab" data-toggle="tab" href="#archived" role="tab"
+              aria-controls="contact" aria-selected="false">Archived</a>
+          </li>
+        </ul>
+        <div class="tab-content" id="myTabContent">
+          <div class="tab-pane fade show active" id="sale" role="tabpanel" aria-labelledby="sale-tab">
+            <ul class="list-group bg-dark">
+              <li class="list-group-item bg-dark p-3 border border-white">
+                <div class="media">
+                  <img class="img-responsive w-25 align-self-center "
+                    src="https://az836796.vo.msecnd.net/media/image/product/en/medium/0006202000005.jpg"
+                    alt="Kinder Surprise" />
+                  <div class="media-body p-3">
+                    <h5 class="mt-0">Kinder Surprise Egg Toy Chocolate</h5>
+                    <span id="pprice" class="text-success">16 BTC</span> (<b id="dsct">60%</b> Off!)<br />
+                    <div class="dropdown position-absolute" style="top: 14rem;">
+                      <div class="btn-group">
+                        <button type="btn btn-sm" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"
+                          aria-haspopup="true" aria-expanded="false">
+                          More...
+                        </button>
+                        <div class="dropdown-menu">
+                          <a class="dropdown-item" href="#">Edit</a>
+                          <a class="dropdown-item" href="#">Delete</a>
+                        </div>
+                      </div>
+                      <button type="btn btn-sm" class="btn btn-logo text-white" aria-haspopup="true"
+                        aria-expanded="false">
+                        Marked as sold
+                      </button>
+                      <button type="btn btn-sm" class="btn btn-warning" aria-haspopup="true" aria-expanded="false">
+                        Archive
+                      </button>
+                    </div>
+                  </div>
+              </li>
+            </ul>
           </div>
-        </div>
-        <div class="container-fluid text-white">
-          <div class="row">
-            <div class="col-2 bg-secondary p-4">
-              <ul class="list-unstyled">
-                <li>Price range:</li>
-                <li></li>
+          <div class="tab-pane fade" id="sold" role="tabpanel" aria-labelledby="sold-tab">
+            <div class="tab-pane fade show active" id="sale" role="tabpanel" aria-labelledby="home-tab">
+              <ul class="list-group bg-dark">
+                <li class="list-group-item bg-dark p-3 border border-white">
+                  <div class="media">
+                    <img class="img-responsive w-25 align-self-center "
+                      src="https://az836796.vo.msecnd.net/media/image/product/en/medium/0006202000005.jpg"
+                      alt="Kinder Surprise" />
+                    <div class="media-body p-3">
+                      <h5 class="mt-0">Kinder Surprise Egg Toy Chocolate</h5>
+                      <span id="pprice" class="text-success">16 BTC</span> (<b id="dsct">60%</b> Off!)<br />
+                      <div class="dropdown position-absolute" style="top: 14rem;">
+                        <div class="btn-group">
+                          <button type="btn btn-sm" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            More...
+                          </button>
+                          <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#">Edit</a>
+                            <a class="dropdown-item" href="#">Delete</a>
+                          </div>
+                        </div>
+                        <button type="btn btn-sm" class="btn btn-success" aria-haspopup="true" aria-expanded="false">
+                          Mark as sale
+                        </button>
+                        <button type="btn btn-sm" class="btn btn-warning" aria-haspopup="true" aria-expanded="false">
+                          Archive
+                        </button>
+                      </div>
+                    </div>
+                </li>
               </ul>
             </div>
-            <div class="col-10 border border-logored p-3">
-              <div class="card card-inverse text-white bg-transparent p-1 border border-logored" style="width: 12rem;">
-                <img class=" card-img-top img-responsive" src="Images&Videos/logo.png" alt="Card image cap">
-                <div class="card-body">
-                  <h5 class="card-title">Insert Product Name</h5>
-                  <p>0 BTC for 10%</p>
-                </div>
-              </div>
+          </div>
+          <div class="tab-pane fade" id="archived" role="tabpanel" aria-labelledby="archived-tab">
+            <div class="tab-pane fade show active" id="sale" role="tabpanel" aria-labelledby="home-tab">
+              <ul class="list-group bg-dark">
+                <li class="list-group-item bg-dark p-3 border border-white">
+                  <div class="media">
+                    <img class="img-responsive w-25 align-self-center "
+                      src="https://az836796.vo.msecnd.net/media/image/product/en/medium/0006202000005.jpg"
+                      alt="Kinder Surprise" />
+                    <div class="media-body p-3">
+                      <h5 class="mt-0">Kinder Surprise Egg Toy Chocolate</h5>
+                      <span id="pprice" class="text-success">16 BTC</span> (<b id="dsct">60%</b> Off!)<br />
+                      <div class="dropdown position-absolute" style="top: 14rem;">
+                        <div class="btn-group">
+                          <button type="btn btn-sm" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            More...
+                          </button>
+                          <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#">Edit</a>
+                            <a class="dropdown-item" href="#">Delete</a>
+                          </div>
+                        </div>
+                        <button type="btn btn-sm" class="btn btn-info" aria-haspopup="true" aria-expanded="false">
+                          Unarchive
+                        </button>
+                      </div>
+                    </div>
+                </li>
+              </ul>
             </div>
+          </div>
+          <div class="p-3 float-right">
+            <button type="button" class="btn btn-logo btn-lg">Add Product <i class="fa fa-plus"></i>
+            </button>
           </div>
         </div>
       </div>

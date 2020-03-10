@@ -41,11 +41,25 @@
     <ul class="nav justify-content-end">
       <li class="nav-item">
         <a class="nav-link border-0 btn btn-sm btn-circle btn-outline-light d-flex justify-content-center align-items-center"
-          style="overflow: hidden;" href="#account" role="tab" data-toggle="modal"><i class="fa fa-user"
-            style="font-size: 1.8em;"></i></a>
+          style="overflow: hidden;" data-container="body" data-toggle="popover" data-placement="bottom">\
+          <img class="img-responsive rounded" src="Images&Videos/logo-alt2.png" style="
+          object-fit: cover; width: 40px; margin-right: 5px;">
+        </a>
       </li>
     </ul>
   </nav>
+  <ul id="popover-content" class="list-group bg-dark border-logored" style="display: none">
+    <h5 class="text-white">Signed in as: EDP445</h5>
+    <hr class="text-white bg-white" />
+    <a href="#" class="list-group-item bg-dark text-logored border-logored">Your Profile</a>
+    <a href="productlist.html" class="list-group-item bg-dark text-logored border-logored">Your Products</a>
+    <a href="#" class="list-group-item bg-dark text-logored border-logored">Your Orders</a>
+    <hr class="text-white bg-white" />
+    <a href="#" class="list-group-item bg-dark text-logored border-logored">Settings</a>
+    <a href="#" class="list-group-item bg-dark text-logored border-logored">Help</a>
+    <a href="#" class="list-group-item bg-dark text-logored border-logored">Switch Accounts</a>
+    <a href="index.html" class="list-group-item bg-dark text-logored border-logored">Sign Out</a>
+  </ul>
   <div class="pos-f-t">
     <div class="collapse" id="navToggler">
       <div class="list-group list-group-horizontal list-group-dark" id="navList" role="tablist">
