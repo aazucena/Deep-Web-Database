@@ -90,7 +90,7 @@
                 <div class="input-group-prepend">
                   <span class="input-group-text" id="prodName"> </span>
                 </div>
-                <input type="text" id="productName" class="form-control form-control-md validate"
+                <input type="text" id="productName" name="proname" class="form-control form-control-md validate"
                   placeholder="Product Name" />
               </div>
             </div>
@@ -316,7 +316,7 @@
                   <select class="custom-select noselect" name="ptype[]" id="ptype" multiple readonly
                     data-selected-text-format="count > 1" tabindex="1">
                     <!--For php, use this to extract data:
-                      foreach ($_GET['select2'] as $selectedOption)
+                      foreach ($_GET['ptype'] as $selectedOption)
                       {
                         //get stuff from $selectedOption
                       }
