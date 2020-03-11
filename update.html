@@ -82,7 +82,361 @@
   <div class="position-absolute w-100">
     <div class="tab-content">
       <div class="tab-pane active" id="home" role="tabpanel">
+        <div class="container p-3">
+          <h2 class="text-logored">Edit Your Product</h2>
+          <form method="POST" action="test.php" role="form">
+            <div class="form-group">
+              <div class="form-md input-group mt-5 mb-4">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="prodName"> </span>
+                </div>
+                <input type="text" id="productName" class="form-control form-control-md validate"
+                  placeholder="Product Name" value="Kinder Surprise Egg Toy Chocolate" />
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="form-md input-group mb-4">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="pQ"><i class="fa fa-question-circle-o prefix"></i></span>
+                </div>
+                <input type="text" id="why" class="form-control form-control-md validate rounded-right"
+                  placeholder="Why are you selling the product here?" value="Illegal in USA, UK, and Chile" />
+              </div>
+            </div>
+            <hr class="text-white bg-white" />
+            <div class="form-group">
+              <div class="form-md input-group mb-4">
+                <div class="custom-file">
+                  <input type="file" class="custom-file-input" id="prodImgs" name="files[]" multiple
+                    data-show-upload="true" data-show-caption="true">
+                  <label class="custom-file-label" for="prodImgs" id="pimg">Choose images</label>
+                </div>
+              </div>
+            </div>
+            <div id="preview" class="row"></div>
+            <hr class="text-white bg-white" />
+            <div class="form-row">
+              <div class="col-md-6 mb-4 input-group">
+                <div class="input-group-prepend">
+                  <label class="input-group-text" for="condition"><i class="fa fa-cog"></i></label>
+                </div>
+                <select class="custom-select" id="condition">
+                  <option selected>Product Condition</option>
+                  <option value="1" selected>New</option>
+                  <option value="2">New - Open Box</option>
+                  <option value="3">Used - Like-New</option>
+                  <option value="4">Used - Very Good</option>
+                  <option value="5">Used - Good</option>
+                  <option value="6">Used - Acceptable</option>
+                  <option value="7">Refurbished</option>
+                  <option value="8">Renewed</option>
+                </select>
+              </div>
+              <div class="col-md-6 mb-4 input-group">
+                <div class="input-group-prepend">
+                  <label class="input-group-text" for="selectCategory"><i class="fa fa-bars"></i></label>
+                </div>
+                <select class="custom-select" id="selectCategory">
+                  <option selected>Choose Category...</option>
+                  <option value="1">Hitmen</option>
+                  <option value="2">Substances</option>
+                  <option value="3" selected>Exotics</option>
+                  <option value="4">Weapons</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="col-md-4 mb-4 input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="pStock"><i class="fa fa-database prefix"></i></span>
+                </div>
+                <input type="number" id="stock" class="form-control form-control-md validate rounded-right"
+                  placeholder="Stock Quantity" min="0" value="90" />
+              </div>
+              <div class="col-md-4 mb-4 input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="pPrice"><i class="fa fa-btc prefix"></i></span>
+                </div>
+                <input type="number" id="pprice" class="form-control form-control-md validate rounded-right"
+                  placeholder="Price (Bitcoin)" min="0" max="100" step="0.01" value="40" />
+              </div>
+              <div class="col-md-4 mb-4 input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="pDsct"><i class="fa fa-percent prefix"></i></span>
+                </div>
+                <input type="number" id="dsct" class="form-control form-control-md validate rounded-right"
+                  placeholder="Discount Percent" min="0" max="100" value="60" />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="col-md-6 mb-4 input-group">
+                <textarea class="form-control" id="desc" rows="10" placeholder="Product Description">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Magna sit amet purus gravida quis blandit. Ultricies tristique nulla aliquet enim tortor at auctor urna nunc. Nullam vehicula ipsum a arcu cursus. Donec et odio pellentesque diam volutpat commodo sed. Risus in hendrerit gravida rutrum quisque non tellus orci. Tellus elementum sagittis vitae et leo duis ut diam. Sit amet volutpat consequat mauris nunc congue nisi vitae. Ipsum consequat nisl vel pretium lectus. Urna neque viverra justo nec ultrices. Vestibulum morbi blandit cursus risus at ultrices mi tempus imperdiet. Sagittis aliquam malesuada bibendum arcu vitae elementum curabitur vitae. Consequat ac felis donec et odio pellentesque diam volutpat. Duis convallis convallis tellus id interdum velit laoreet id donec.
+Commodo odio aenean sed adipiscing diam donec adipiscing. Faucibus vitae aliquet nec ullamcorper sit amet risus nullam. Lobortis feugiat vivamus at augue eget arcu. Risus in hendrerit gravida rutrum. Pretium quam vulputate dignissim suspendisse. Imperdiet sed euismod nisi porta lorem. Accumsan tortor posuere ac ut consequat. Magna sit amet purus gravida. Pellentesque massa placerat duis ultricies lacus. Ac tincidunt vitae semper quis lectus nulla at. Cras sed felis eget velit aliquet sagittis id consectetur purus. Est placerat in egestas erat imperdiet sed euismod nisi. Sed tempus urna et pharetra pharetra massa. Consectetur adipiscing elit ut aliquam purus. Eu consequat ac felis donec et odio pellentesque diam. Nunc non blandit massa enim nec dui nunc. Vitae congue eu consequat ac.
+Donec et odio pellentesque diam volutpat. Ornare arcu odio ut sem nulla. Id volutpat lacus laoreet non curabitur gravida. Velit scelerisque in dictum non consectetur a. In iaculis nunc sed augue lacus viverra. Cursus vitae congue mauris rhoncus aenean vel elit. Netus et malesuada fames ac turpis. Duis at tellus at urna. Donec adipiscing tristique risus nec feugiat in fermentum. Massa id neque aliquam vestibulum. Aliquam ultrices sagittis orci a scelerisque.
+Sollicitudin nibh sit amet commodo. Dignissim sodales ut eu sem integer vitae justo. Aliquam purus sit amet luctus venenatis lectus magna fringilla. Viverra aliquet eget sit amet tellus cras adipiscing enim. Massa eget egestas purus viverra accumsan. Placerat duis ultricies lacus sed turpis tincidunt id. At lectus urna duis convallis convallis tellus. Mauris in aliquam sem fringilla ut morbi tincidunt augue interdum. Hac habitasse platea dictumst vestibulum rhoncus est pellentesque elit. Pretium viverra suspendisse potenti nullam ac tortor vitae purus faucibus. Maecenas volutpat blandit aliquam etiam erat velit. Aliquam nulla facilisi cras fermentum odio eu feugiat pretium nibh. Suspendisse in est ante in. Sed arcu non odio euismod lacinia at quis. Sed euismod nisi porta lorem mollis aliquam.
+Nisl rhoncus mattis rhoncus urna neque viverra justo nec ultrices. Quis risus sed vulputate odio. Augue ut lectus arcu bibendum at varius vel. Id ornare arcu odio ut sem nulla pharetra diam sit. Sem nulla pharetra diam sit amet nisl suscipit adipiscing. Accumsan in nisl nisi scelerisque. Nulla porttitor massa id neque aliquam vestibulum morbi blandit cursus. Ipsum nunc aliquet bibendum enim facilisis. Augue mauris augue neque gravida. Vestibulum lectus mauris ultrices eros in cursus. Penatibus et magnis dis parturient montes nascetur ridiculus mus. Tellus in hac habitasse platea dictumst vestibulum. Sagittis orci a scelerisque purus.
+                </textarea>
+              </div>
+              <div class="col-md-6 mb-4 input-group">
+                <textarea class="form-control" id="spec" rows="10" placeholder="Product Specification">
+Brand: Ferrero
+...
+                </textarea>
+              </div>
+            </div>
+            <div id="hitmen" class="cfield">
+              <hr class="text-white bg-white" />
+              <div class="form-group">
+                <div class="form-md input-group mb-4">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="hName"><i class="fa fa-user-circle-o prefix"></i></span>
+                  </div>
+                  <input type="text" id="hitName" class="form-control form-control-md validate rounded-right"
+                    placeholder="Name of Hitman" />
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="md-form form-md input-group mb-4">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="hEmail"><i class="fa fa-envelope prefix"></i></span>
+                  </div>
+                  <input type="email" id="hitEmail" class="form-control form-control-md validate"
+                    placeholder="Hitman's Email Address" />
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="col-md-4 mb-4 input-group">
+                  <div class="input-group-prepend">
+                    <label class="input-group-text" for="gender"><i class="fa fa-user"></i></label>
+                  </div>
+                  <select class="custom-select" id="gender">
+                    <option selected>Choose Gender</option>
+                    <option value="1">Male</option>
+                    <option value="2">Female</option>
+                    <option value="3">Other Genders</option>
+                  </select>
+                </div>
+                <div class="col-md-4 mb-4 input-group">
+                  <div class="input-group-prepend">
+                    <label class="input-group-text" for="request"><i class="fa fa-question"></i></label>
+                  </div>
+                  <select class="custom-select" id="request">
+                    <option selected>What do you request?</option>
+                    <option value="1">Assassin</option>
+                    <option value="2">Bodyguard</option>
+                    <option value="3">Fetch/Robber</option>
+                    <option value="4">Getaway</option>
+                    <option value="5">Hacker</option>
+                    <option value="6">Smuggler</option>
+                  </select>
+                </div>
+                <div class="col-md-4 mb-4 input-group">
+                  <div class="input-group-prepend">
+                    <label class="input-group-text" for="hrate"><i class="fa fa-fax"></i></label>
+                  </div>
+                  <select class="custom-select" id="hrate">
+                    <option selected>Rate Your Hitman</option>
+                    <option value="1">Novice</option>
+                    <option value="2">Dilettante</option>
+                    <option value="3">Journeyman</option>
+                    <option value="4">Masters</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="md-form form-md input-group mb-4">
+                  <textarea class="form-control" id="req" rows="10" placeholder="Requirements"></textarea>
+                </div>
+              </div>
+            </div>
+            <div id="substances" class="cfield">
+              <hr class="text-white bg-white" />
 
+              <div class="form-row">
+                <div class="col-md-4 mb-4 input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="sGrade"><i class="fa fa-plus prefix"></i></span>
+                  </div>
+                  <input type="text" id="grade" class="form-control form-control-md validate rounded-right"
+                    placeholder="Substance Rate" minlength="1" maxlength="5" />
+                </div>
+                <div class="col-md-4 mb-4 input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="sGrams"><i class="fa fa-cubes prefix"></i></span>
+                  </div>
+                  <input type="number" id="sgrams" class="form-control form-control-md validate rounded-right"
+                    placeholder="Weight (Grams)" min="0" step="0.01" />
+                </div>
+                <div class="col-md-4 mb-4 input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="subType"><i class="fa fa-flask prefix"></i></span>
+                  </div>
+                  <select class="custom-select" id="subtypes">
+                    <option selected>Choose Exotic Type</option>
+                    <option value="1">Cannabinoids</option>
+                    <option value="2">Stimulants</option>
+                    <option value="3">Opiods</option>
+                    <option value="4">Sedatives</option>
+                    <option value="5">Dissociative</option>
+                    <option value="6">Hallucinogens</option>
+                    <option value="7">Chemicals</option>
+                    <option value="8">Alcohol</option>
+                    <option value="9">Other Drugs</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div id="exotics" class="cfield">
+              <hr class="text-white bg-white" />
+              <div class="form-group">
+                <div class="form-md input-group mb-4">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="exoType"><i class="fa fa-gift prefix"></i></span>
+                  </div>
+                  <select class="custom-select" id="exotypes">
+                    <option selected>Choose Exotic Type</option>
+                    <option value="1">Chemicals</option>
+                    <option value="2">Contraband</option>
+                    <option value="3">Counterfeit</option>
+                    <option value="4">Artifacts</option>
+                    <option value="5">Technology</option>
+                    <option value="6">Data</option>
+                    <option value="7">Organs</option>
+                    <option value="8">Forgery</option>
+                    <option value="9" selected>Food</option>
+                    <option value="10">Miscellenous</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="form-md input-group mb-4">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="proTypes"><i class="fa fa-diamond prefix"></i></span>
+                  </div>
+                  <input type="text" id="protypes" class="form-control form-control-md validate rounded-right"
+                    placeholder="Add Product Types" />
+                  <div class="input-group-append">
+                    <button class="btn btn-logo" type="button" id="addprod">Add</button>
+                  </div>
+                </div>
+                <h4 class="text-logored">Product Types</h4>
+                <div class="form-md input-group mb-4">
+                  <select class="custom-select noselect" name="ptype[]" id="ptype" multiple readonly
+                    data-selected-text-format="count > 1" tabindex="1">
+                    <option value="1">Carton Box</option>
+                    <option value="2">Plastic Bag</option>
+                    <option value="3">Paper Wrap</option>
+                    <!--For php, use this to extract data:
+                      foreach ($_GET['select2'] as $selectedOption)
+                      {
+                        //get stuff from $selectedOption
+                      }
+                    -->
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div id="weapons" class="cfield">
+              <hr class="text-white bg-white" />
+              <div class="form-group">
+                <div class="form-md input-group mb-4">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="wTypes"><i class="fa fa-exclamation-triangle prefix"></i></span>
+                  </div>
+                  <select class="custom-select" id="wtypes">
+                    <option selected>Choose Weapon Type</option>
+                    <option value="1">Firearms/Ranged</option>
+                    <option value="2">Explosives</option>
+                    <option value="3">Melee</option>
+                    <option value="4">Chemical/Biological/Nuclear</option>
+                    <option value="5">Miscellenous</option>
+                  </select>
+                </div>
+              </div>
+              <div id="arms" class="wfield">
+                <div class="form-group">
+                  <div class="form-md input-group mb-4">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="armTypes"><i class="fa fa-crosshairs prefix"></i></span>
+                    </div>
+                    <select class="custom-select" id="armtypes">
+                      <option selected>Choose Arms</option>
+                      <option value="1">Pistol</option>
+                      <option value="2">Rifle</option>
+                      <option value="3">Shotgun</option>
+                      <option value="4">Sniper</option>
+                      <option value="5">Bow/Crossbow</option>
+                      <option value="6">Launchers</option>
+                      <option value="7">Submachine</option>
+                      <option value="8">Light-Machine</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div id="exp" class="wfield">
+                <div class="form-group">
+                  <div class="form-md input-group mb-4">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="expTypes"><i class="fa fa-bomb prefix"></i></span>
+                    </div>
+                    <select class="custom-select" id="exptypes">
+                      <option selected>Choose Explosives</option>
+                      <option value="1">Grenade</option>
+                      <option value="2">Flashbang/Concussion</option>
+                      <option value="3">Claymore/C4</option>
+                      <option value="4">Molotov</option>
+                      <option value="5">Mine</option>
+                      <option value="6">Missile</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div id="melee" class="wfield">
+                <div class="form-group">
+                  <div class="form-md input-group mb-4">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="mTypes"><i class="fa fa-legal prefix"></i></span>
+                    </div>
+                    <select class="custom-select" id="mtypes">
+                      <option selected>Choose Melee Type</option>
+                      <option value="1">Pierce</option>
+                      <option value="2">Slash/Edge</option>
+                      <option value="3">Blunt</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div id="bcn" class="wfield">
+                <div class="form-group">
+                  <div class="form-md input-group mb-4">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="comp"><i class="fa fa-fire prefix"></i></span>
+                    </div>
+                    <input type="text" id="compound" class="form-control form-control-md validate"
+                      placeholder="Disease/Substance Name" />
+                  </div>
+                </div>
+              </div>
+              <div id="ammo" class="wfield">
+                <div class="form-group">
+                  <div class="form-md input-group mb-4">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="wAmmo"><i class="fa fa-bolt prefix"></i></span>
+                    </div>
+                    <input type="number" id="amtype" class="form-control form-control-md validate rounded-right"
+                      placeholder="Ammo Quantity" min="0" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="text-center form-md pb-3 mb-4" id="post">
+              <button class="btn btn-light float-right">
+                Update <i class="fa fa-pencil ml-1"></i>
+              </button>
+            </div>
+        </div>
+        </form>
       </div>
       <div class="tab-pane" id="about" role="tabpanel">
         <p class="text-white">About</p>
@@ -195,35 +549,35 @@
             <div class="tab-pane fade in show active" id="login" role="tabpanel">
               <div class="modal-body mb-1">
                 <form method="POST" action="test.php" role="form">
-                <div class="form-group">
-                  <div class="md-form form-sm input-group mt-5 mb-5">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text" id="eEmail"><i class="fa fa-envelope prefix"></i></span>
+                  <div class="form-group">
+                    <div class="md-form form-sm input-group mt-5 mb-5">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text" id="eEmail"><i class="fa fa-envelope prefix"></i></span>
+                      </div>
+                      <input type="email" id="Email" class="form-control form-control-sm validate"
+                        placeholder="Email Address" required />
                     </div>
-                    <input type="email" id="Email" class="form-control form-control-sm validate"
-                      placeholder="Email Address" required />
                   </div>
-                </div>
-                <div class="form-group">
-                  <div class="md-form form-sm input-group mb-4">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text" id="ePass">
-                        <i class="fa fa-lock prefix"></i>
-                      </span>
+                  <div class="form-group">
+                    <div class="md-form form-sm input-group mb-4">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text" id="ePass">
+                          <i class="fa fa-lock prefix"></i>
+                        </span>
+                      </div>
+                      <input type="password" id="Pass" class="form-control form-control-sm validate"
+                        placeholder="Password" required />
                     </div>
-                    <input type="password" id="Pass" class="form-control form-control-sm validate"
-                      placeholder="Password" required />
                   </div>
-                </div>
-                <div class="form-group form-check">
-                  <input type="checkbox" class="form-check-input" id="keepme">
-                  <label class="form-check-label" for="#keepme">Keep me signed in</label>
-                </div>
-                <div class="text-center mt-2">
-                  <button class="btn btn-light">
-                    Log in <i class="fa fa-sign-in ml-1"></i>
-                  </button>
-                </div>
+                  <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input" id="keepme">
+                    <label class="form-check-label" for="#keepme">Keep me signed in</label>
+                  </div>
+                  <div class="text-center mt-2">
+                    <button class="btn btn-light">
+                      Log in <i class="fa fa-sign-in ml-1"></i>
+                    </button>
+                  </div>
                 </form>
               </div>
               <div class="modal-footer">
@@ -241,94 +595,94 @@
             </div>
             <div class="tab-pane fade" id="register" role="tabpanel">
               <div class="modal-body">
-          <form method="POST" action="test.php" role="form">
-                <div class="form-group">
-                  <div class="md-form form-sm input-group mt-5 mb-4">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text" id="nEmail"><i class="fa fa-envelope prefix"></i></span>
+                <form method="POST" action="test.php" role="form">
+                  <div class="form-group">
+                    <div class="md-form form-sm input-group mt-5 mb-4">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text" id="nEmail"><i class="fa fa-envelope prefix"></i></span>
+                      </div>
+                      <input type="email" id="newEmail" class="form-control form-control-sm validate"
+                        placeholder="New Email Address" required />
                     </div>
-                    <input type="email" id="newEmail" class="form-control form-control-sm validate"
-                      placeholder="New Email Address" required />
                   </div>
-                </div>
-                <div class="form-group">
-                  <div class="md-form form-sm input-group mb-4">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text" id="nUser"><i class="fa fa-user-circle-o prefix"></i></span>
+                  <div class="form-group">
+                    <div class="md-form form-sm input-group mb-4">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text" id="nUser"><i class="fa fa-user-circle-o prefix"></i></span>
+                      </div>
+                      <input type="text" id="username" class="form-control form-control-sm validate rounded-right"
+                        placeholder="Username" aria-describedby="userHelpInline" required />
+                      <small id="userHelpInline" class="text-muted ml-3 mt-1">
+                        *Minimum of 8 characters, must have letters, numbers, and any special characters.
+                      </small>
                     </div>
-                    <input type="text" id="username" class="form-control form-control-sm validate rounded-right"
-                      placeholder="Username" aria-describedby="userHelpInline" required />
-                    <small id="userHelpInline" class="text-muted ml-3 mt-1">
-                      *Minimum of 8 characters, must have letters, numbers, and any special characters.
-                    </small>
                   </div>
-                </div>
 
-                <div class="row">
-                  <div class="col">
-                    <div class="form-group">
-                      <div class="md-form form-sm input-group mb-4">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text" id="nFName"><i class="fa fa-user-o prefix"></i></span>
+                  <div class="row">
+                    <div class="col">
+                      <div class="form-group">
+                        <div class="md-form form-sm input-group mb-4">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text" id="nFName"><i class="fa fa-user-o prefix"></i></span>
+                          </div>
+                          <input type="text" id="fname" class="form-control form-control-sm validate"
+                            placeholder="First Name (Optional)" />
                         </div>
-                        <input type="text" id="fname" class="form-control form-control-sm validate"
-                          placeholder="First Name (Optional)" />
+                      </div>
+                    </div>
+                    <div class="col">
+                      <div class="form-group">
+                        <div class="md-form form-sm input-group mb-4">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text" id="nLName"><i class="fa fa-user-o prefix"></i></span>
+                          </div>
+                          <input type="text" id="lname" class="form-control form-control-sm validate"
+                            placeholder="Last Name (Optional)" />
+                        </div>
                       </div>
                     </div>
                   </div>
-                  <div class="col">
-                    <div class="form-group">
-                      <div class="md-form form-sm input-group mb-4">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text" id="nLName"><i class="fa fa-user-o prefix"></i></span>
-                        </div>
-                        <input type="text" id="lname" class="form-control form-control-sm validate"
-                          placeholder="Last Name (Optional)" />
+                  <div class="form-group">
+                    <div class="md-form form-sm input-group mb-4">
+                      <div class="input-group-prepend mx">
+                        <span class="input-group-text" id="nPass">
+                          <i class="fa fa-lock prefix"></i>
+                        </span>
                       </div>
+                      <input type="password" id="newPass"
+                        class="form-control form-control-sm validate mx-sm rounded-right" placeholder="New Password"
+                        aria-describedby="passwordHelpInline" required />
+                      <small id="passwordHelpInline" class="text-muted ml-3 mt-1">
+                        *Must be 8-20 characters long.
+                      </small>
                     </div>
                   </div>
-                </div>
-                <div class="form-group">
-                  <div class="md-form form-sm input-group mb-4">
-                    <div class="input-group-prepend mx">
-                      <span class="input-group-text" id="nPass">
-                        <i class="fa fa-lock prefix"></i>
-                      </span>
+                  <div class="form-group">
+                    <div class="md-form form-sm input-group mb-4">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text" id="cPass">
+                          <i class="fa fa-lock prefix"></i>
+                        </span>
+                      </div>
+                      <input type="password" id="confirmPass" class="form-control form-control-sm validate"
+                        placeholder="Confirm Password" required />
                     </div>
-                    <input type="password" id="newPass"
-                      class="form-control form-control-sm validate mx-sm rounded-right" placeholder="New Password"
-                      aria-describedby="passwordHelpInline" required />
-                    <small id="passwordHelpInline" class="text-muted ml-3 mt-1">
-                      *Must be 8-20 characters long.
-                    </small>
                   </div>
-                </div>
-                <div class="form-group">
-                  <div class="md-form form-sm input-group mb-4">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text" id="cPass">
-                        <i class="fa fa-lock prefix"></i>
-                      </span>
-                    </div>
-                    <input type="password" id="confirmPass" class="form-control form-control-sm validate"
-                      placeholder="Confirm Password" required />
+                  <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input" id="tc" required>
+                    <label class="form-check-label" for="#tc">
+                      <a href="#termsandconditions" data-toggle="modal" role="tab">
+                        Agree to Terms & Conditions
+                      </a>
+                    </label>
                   </div>
-                </div>
-                <div class="form-group form-check">
-                  <input type="checkbox" class="form-check-input" id="tc" required>
-                  <label class="form-check-label" for="#tc">
-                    <a href="#termsandconditions" data-toggle="modal" role="tab">
-                      Agree to Terms & Conditions
-                    </a>
-                  </label>
-                </div>
-                <div class="text-center form-sm mt-2">
-                  <button class="btn btn-light">
-                    Sign up <i class="fa fa-sign-in ml-1"></i>
-                  </button>
-                </div>
-              </form>
-            </div>wwwwwwwwwwww
+                  <div class="text-center form-sm mt-2">
+                    <button class="btn btn-light">
+                      Sign up <i class="fa fa-sign-in ml-1"></i>
+                    </button>
+                  </div>
+                </form>
+              </div>
               <div class="modal-footer">
                 <div class="options text-right">
                   <p class="pt-1">
