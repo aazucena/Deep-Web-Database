@@ -1,6 +1,7 @@
 CREATE table Product(
 	'pid' int NOT NULL AUTO_INCREMENT,
 	'catid' int NOT NULL,  
+	'cid' int NOT NULL,  
 	'pname' varchar(255) NOT NULL,
 	'pwhy' varchar(255) NOT NULL,
 	'cond' varchar(255) NOT NULL,
@@ -8,7 +9,10 @@ CREATE table Product(
 	'disctpct' int(10) NOT NULL,
 	'pdate' datetime NOT NULL,
 	'#instock' int NOT NULL,  
-	PRIMARY KEY ('pid')
+	PRIMARY KEY ('pid'),
+	FOREIGN KEY ('catid') REFERENCES Category('catid'),
+	FOREIGN KEY ('cid') REFERENCES Client('cid')
+
 );
 
 CREATE table Images(

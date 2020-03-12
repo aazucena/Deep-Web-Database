@@ -5,7 +5,5 @@ CREATE table Client(
 	'passwd' varchar(20) NOT NULL, 
 	'fname' varchar(26), 
 	'lname' varchar(666), 
-	'oid' varchar(15),
-	PRIMARY KEY ('cid'),
-	FOREIGN KEY ('oid') REFERENCES Orders('oid')
+	PRIMARY KEY ('cid')
 );
