@@ -1,5 +1,5 @@
 CREATE table Product(
-	'pid' int NOT NULL AUTO_INCREMENT,
+	'pid' int NOT NULL AUTO_INCREMENT UNIQUE,
 	'catid' int NOT NULL,  
 	'cid' int NOT NULL,  
 	'pname' varchar(255) NOT NULL,

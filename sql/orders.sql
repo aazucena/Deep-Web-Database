@@ -1,5 +1,5 @@
 CREATE table Orders(
-	'oid' int NOT NULL AUTO_INCREMENT,
+	'oid' int NOT NULL AUTO_INCREMENT UNIQUE,
 	'pid' int NOT NULL,
 	'cid' int NOT NULL,
 	'oprice' int NOT NULL,
