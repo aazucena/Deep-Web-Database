@@ -1,10 +1,4 @@
-<?php
-if (!isset($_COOKIE('logged'))) {
-  echo '<script type="text/javascript">alert(" It did not work at all")</script>';
-  header("Location: index.php");
-}
 
-?>
 <!DOCTYPE html>
 <html lang="en">
 <!--Meta-->
@@ -100,7 +94,7 @@ if (!isset($_COOKIE('logged'))) {
         <div class="container p-3">
           <div class="text-center">
             <img src="Images&Videos/logo-alt2.png" class="img-responsive w-50">
-            <h1 class="text-logored"><?php echo $_SESSION['uname'];?></h1>
+            <h1 class="text-logored"><?php echo $_COOKIE['uname'];?></h1>
           </div>
           <button class="btn btn-success float-right" type="button" data-toggle="collapse" data-target="#editProfile"
             aria-expanded="false" aria-controls="edit-profile">
@@ -126,7 +120,7 @@ if (!isset($_COOKIE('logged'))) {
                     <span class="input-group-text" id="pUser"><i class="fa fa-user-circle-o prefix"></i></span>
                   </div>
                   <input type="text" id="username" name="euser" class="form-control form-control-md validate rounded-right"
-                    placeholder="Username" aria-describedby="userHelpInline" value="<?php echo $_COOKIE['uname'];?>" />
+                    placeholder="Username" aria-describedby="userHelpInline" value="<?php echo $_COOKIE['user'];?>" />
                 </div>
               </div>
               <div class="row">
