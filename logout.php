@@ -15,5 +15,5 @@ if (isset($_COOKIE['logged'])) {
     header("Location: index.php");
 }
 /*exit();*/
-}
+
 ?>
