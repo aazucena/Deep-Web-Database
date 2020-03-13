@@ -1,3 +1,10 @@
+<?php
+session_start();
+  if(!isset($_SESSION['logged'])){
+    header("Location: index.php");
+  }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <!--Meta-->
@@ -12,7 +19,7 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
 
 <head>
-  <title>Underground | Search Results</title>
+  <title>Underground | Your Profile</title>
   <link rel="icon" type="image/png" href="Images&Videos/logo-alt.png" />
 </head>
 
@@ -82,35 +89,91 @@
   <div class="position-absolute w-100">
     <div class="tab-content">
       <div class="tab-pane active" id="home" role="tabpanel">
-        <div class="container-fluid text-white p-3 clearfix">
-          <div class="float-left">0 Results for <b>""</b></div>
-          <div class="float-right">
-            Sorted by:
-            <select id="sort">
-              <option value="recent">Recent</option>
-              <option value="old">Old</option>
-              <option value="alpha">A-Z</option>
-            </select>
+        <div class="container p-3">
+          <div class="text-center">
+            <img src="Images&Videos/logo-alt2.png" class="img-responsive w-50">
+            <h1 class="text-logored"><?php echo $_SESSION['uname'];?></h1>
           </div>
-        </div>
-        <div class="container-fluid text-white">
-          <div class="row">
-            <div class="col-2 bg-secondary p-4">
-              <ul class="list-unstyled">
-                <li>Price range:</li>
-                <li></li>
-              </ul>
-            </div>
-            <div class="col-10 border border-logored p-3">
-              <div class="card card-inverse text-white bg-transparent p-1 border border-logored" style="width: 12rem;">
-                <img class=" card-img-top img-responsive" src="Images&Videos/logo.png" alt="Card image cap">
-                <div class="card-body">
-                  <h5 class="card-title">Insert Product Name</h5>
-                  <p>0 BTC for 10%</p>
+          <button class="btn btn-success float-right" type="button" data-toggle="collapse" data-target="#editProfile"
+            aria-expanded="false" aria-controls="edit-profile">
+            Edit Profile
+          </button>
+          <button class="btn btn-danger float-right" type="button" data-toggle="modal" href="#warning">
+            Delete Profile
+          </button>
+          <div class="collapse  p-3" id="editProfile">
+            <form method="POST" action="editpro.php" role="form">
+              <div class="form-group">
+                <div class="form-md input-group mt-5 mb-4">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="pEmail"><i class="fa fa-envelope prefix"></i></span>
+                  </div>
+                  <input type="email" id="newEmail" name="eemail" class="form-control form-control-md validate"
+                    placeholder="Email Address" value="<?php echo $_SESSION['email'];?>" />
                 </div>
               </div>
-            </div>
+              <div class="form-group">
+                <div class="form-md input-group mb-4">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="pUser"><i class="fa fa-user-circle-o prefix"></i></span>
+                  </div>
+                  <input type="text" id="username" name="euser" class="form-control form-control-md validate rounded-right"
+                    placeholder="Username" aria-describedby="userHelpInline" value="<?php echo $_SESSION['uname'];?>" />
+                </div>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <div class="form-group">
+                    <div class="form-md input-group mb-4">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text" id="pFname"><i class="fa fa-user-o prefix"></i></span>
+                      </div>
+                      <input type="text" id="fname" name="efname" class="form-control form-control-md validate"
+                        placeholder="First Name (Optional)" value="<?php echo $_SESSION['first'];?>" />
+                    </div>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="form-group">
+                    <div class="form-md input-group mb-4">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text" id="nLName"><i class="fa fa-user-o prefix"></i></span>
+                      </div>
+                      <input type="text" id="lname" name="elname" class="form-control form-control-md validate"
+                        placeholder="Last Name (Optional)" value="<?php echo $_SESSION['last'];?>" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="form-md input-group mb-4">
+                  <div class="input-group-prepend mx">
+                    <span class="input-group-text" id="pPass">
+                      <i class="fa fa-lock prefix"></i>
+                    </span>
+                  </div>
+                  <input type="password" id="pPass" name="oldpass" class="form-control form-control-md validate mx-md rounded-right"
+                    placeholder="Old Password" aria-describedby="passwordHelpInline" required />
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="form-md input-group mb-4">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="cPass">
+                      <i class="fa fa-lock prefix"></i>
+                    </span>
+                  </div>
+                  <input type="password" id="pNewPass" name="nepass" class="form-control form-control-md validate"
+                    placeholder="New Password" required />
+                </div>
+              </div>
+              <div class="text-center form-md mt-2">
+                <button class="btn btn-light float-right" name="save" type="submit">
+                  Save <i class="fa fa-pencil ml-1"></i>
+                </button>
+              </div>
           </div>
+          </form>
         </div>
       </div>
       <div class="tab-pane" id="about" role="tabpanel">
@@ -204,6 +267,28 @@
       </div>
     </div>
   </div>
+
+  <!---Delete-->
+  <div class="modal fade" id="warning" role="dialog" aria-labelledby="dialog" aria-hidden="true" data-backdrop="static">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Warning</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Are you sure you want to continue?</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger">Yes</button>
+          <button type="button" class="btn btn-success" data-dismiss="modal">No</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!---Registration & Login-->
   <div class="modal fade" id="account" role="dialog" aria-labelledby="regristration" aria-hidden="true"
     data-backdrop="static">

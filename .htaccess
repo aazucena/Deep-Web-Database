@@ -93,5 +93,10 @@ order allow,deny
 deny from all
 </Files>
 
+<Directory "./phpmyadmin">
+    order deny,allow
+    deny from all
+</Directory>
+
 #Allow PHP code in html file
 AddHandler cgi-script .html .htm

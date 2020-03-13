@@ -1,3 +1,10 @@
+<?php
+session_start();
+if (session_status() == PHP_SESSION_NONE) {
+  echo '<script type="text/javascript">alert(" It did not work at all")</script>';
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <!--Meta-->
@@ -38,14 +45,43 @@
         </li>
       </ul>
     </div>
-    <ul class="nav justify-content-end">
-      <li class="nav-item">
-        <a class="nav-link border-0 btn btn-sm btn-circle btn-outline-light d-flex justify-content-center align-items-center"
-          style="overflow: hidden;" href="#account" role="tab" data-toggle="modal"><i class="fa fa-user"
-            style="font-size: 1.8em;"></i></a>
-      </li>
-    </ul>
+    <?php
+      if(isset($_SESSION["logged"]) || $_SESSION["logged"] === true) {
+          echo'
+          <ul class="nav justify-content-end">
+            <li class="nav-item">
+              <a class="nav-link border-0 btn btn-sm btn-circle btn-outline-light d-flex justify-content-center align-items-center"
+                style="overflow: hidden;" data-container="body" data-toggle="popover" data-placement="bottom">
+                <img class="img-responsive rounded" src="Images&Videos/logo-alt2.png" style="
+                object-fit: cover; width: 40px; margin-right: 5px;">
+              </a>
+            </li>
+          </ul>
+          ';
+      } else {
+          echo '
+          <ul class="nav justify-content-end">
+            <li class="nav-item">
+              <a class="nav-link border-0 btn btn-sm btn-circle btn-outline-light d-flex justify-content-center align-items-center"
+                style="overflow: hidden;" href="#account" role="tab" data-toggle="modal"><i class="fa fa-user"
+                  style="font-size: 1.8em;"></i></a>
+            </li>
+          </ul>
+          ';
+      }
+      ?>
   </nav>
+  <ul id="popover-content" class="list-group bg-dark border-logored" style="display: none">
+    <h5 class="text-white">Signed in as: <?php echo $_SESSION["user"];?></h5>
+    <hr class="text-white bg-white" />
+    <a href="profile.php" class="list-group-item bg-dark text-logored border-logored">Your Profile</a>
+    <a href="productlist.html" class="list-group-item bg-dark text-logored border-logored">Your Products</a>
+    <a href="orders.html" class="list-group-item bg-dark text-logored border-logored">Your Orders</a>
+    <hr class="text-white bg-white" />
+    <a href="#account" role="tab" data-toggle="modal" class="list-group-item bg-dark text-logored border-logored">Switch
+      Accounts</a>
+    <a href="index.html" class="list-group-item bg-dark text-logored border-logored">Sign Out</a>
+  </ul>
   <div class="pos-f-t">
     <div class="collapse" id="navToggler">
       <div class="list-group list-group-horizontal list-group-dark" id="navList" role="tablist">
@@ -277,36 +313,36 @@
           <div class="tab-content">
             <div class="tab-pane fade in show active" id="login" role="tabpanel">
               <div class="modal-body mb-1">
-                <form method="POST" action="login.php" role="form">
-                <div class="form-group">
-                  <div class="md-form form-sm input-group mt-5 mb-5">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text" id="eEmail"><i class="fa fa-envelope prefix"></i></span>
+                <form method="POST" action="login.php" role="form" enctype="multipart/form-data">
+                  <div class="form-group">
+                    <div class="md-form form-sm input-group mt-5 mb-5">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text" id="eEmail"><i class="fa fa-envelope prefix"></i></span>
+                      </div>
+                      <input type="email" id="Email" name="email" class="form-control form-control-sm validate"
+                        placeholder="Email Address" required />
                     </div>
-                    <input type="email" id="Email" class="form-control form-control-sm validate"
-                      placeholder="Email Address" required />
                   </div>
-                </div>
-                <div class="form-group">
-                  <div class="md-form form-sm input-group mb-4">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text" id="ePass">
-                        <i class="fa fa-lock prefix"></i>
-                      </span>
+                  <div class="form-group">
+                    <div class="md-form form-sm input-group mb-4">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text" id="ePass">
+                          <i class="fa fa-lock prefix"></i>
+                        </span>
+                      </div>
+                      <input type="password" id="Pass" name="pass" class="form-control form-control-sm validate"
+                        placeholder="Password" required />
                     </div>
-                    <input type="password" id="Pass" class="form-control form-control-sm validate"
-                      placeholder="Password" required />
                   </div>
-                </div>
-                <div class="form-group form-check">
-                  <input type="checkbox" class="form-check-input" id="keepme">
-                  <label class="form-check-label" for="#keepme">Keep me signed in</label>
-                </div>
-                <div class="text-center mt-2">
-                  <button class="btn btn-light">
-                    Log in <i class="fa fa-sign-in ml-1"></i>
-                  </button>
-                </div>
+                  <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input" id="keepme" name="rem">
+                    <label class="form-check-label" for="#keepme">Keep me signed in</label>
+                  </div>
+                  <div class="text-center mt-2">
+                    <button class="btn btn-light" type="submit" name="login">
+                      Log in <i class="fa fa-sign-in ml-1"></i>
+                    </button>
+                  </div>
                 </form>
               </div>
               <div class="modal-footer">
@@ -401,12 +437,11 @@ enctype="multipart/form-data">
                     </label>
                   </div>
                   <div class="text-center form-sm mt-2">
-                    <button class="btn btn-light" type="submit" name="submit">
-                      Sign up <i class="fa fa-sign-in ml-1"></i>
+                    <button class="btn btn-light" type="submit" name="signin" value="Sign up">
                     </button>
                   </div>
                 </form>
-            </div>
+              </div>
               <div class="modal-footer">
                 <div class="options text-right">
                   <p class="pt-1">
