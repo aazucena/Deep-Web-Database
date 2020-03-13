@@ -1,10 +1,3 @@
-<?php
-session_start();
-if (session_status() == PHP_SESSION_NONE) {
-  echo '<script type="text/javascript">alert(" It did not work at all")</script>';
-}
-
-?>
 <!DOCTYPE html>
 <html lang="en">
 <!--Meta-->
@@ -46,7 +39,7 @@ if (session_status() == PHP_SESSION_NONE) {
       </ul>
     </div>
     <?php
-      if(isset($_SESSION["logged"]) || $_SESSION["logged"] === true) {
+      if(isset($_COOKIE["logged"]) || $_COOKIE["logged"] === true) {
           echo'
           <ul class="nav justify-content-end">
             <li class="nav-item">
@@ -72,7 +65,7 @@ if (session_status() == PHP_SESSION_NONE) {
       ?>
   </nav>
   <ul id="popover-content" class="list-group bg-dark border-logored" style="display: none">
-    <h5 class="text-white">Signed in as: <?php echo $_SESSION["user"];?></h5>
+    <h5 class="text-white">Signed in as: <?php echo $_COOKIE["user"];?></h5>
     <hr class="text-white bg-white" />
     <a href="profile.php" class="list-group-item bg-dark text-logored border-logored">Your Profile</a>
     <a href="productlist.html" class="list-group-item bg-dark text-logored border-logored">Your Products</a>
@@ -80,7 +73,7 @@ if (session_status() == PHP_SESSION_NONE) {
     <hr class="text-white bg-white" />
     <a href="#account" role="tab" data-toggle="modal" class="list-group-item bg-dark text-logored border-logored">Switch
       Accounts</a>
-    <a href="index.html" class="list-group-item bg-dark text-logored border-logored">Sign Out</a>
+    <a href="logout.php" class="list-group-item bg-dark text-logored border-logored">Sign Out</a>
   </ul>
   <div class="pos-f-t">
     <div class="collapse" id="navToggler">
@@ -438,6 +431,7 @@ enctype="multipart/form-data">
                   </div>
                   <div class="text-center form-sm mt-2">
                     <button class="btn btn-light" type="submit" name="signin" value="Sign up">
+                      Sign Up
                     </button>
                   </div>
                 </form>

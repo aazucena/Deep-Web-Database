@@ -1,7 +1,7 @@
 
 <?php
 session_start();
-if(isset($_POST['submit'])){
+if(isset($_POST['signin'])){
   include 'sql.php';
   $email = mysqli_real_escape_string($conn, $_POST['nemail']);
   $uname = mysqli_real_escape_string($conn, $_POST['nuser']);
@@ -14,11 +14,12 @@ if(isset($_POST['submit'])){
 
   $results = mysqli_query($conn, $sql) or die($conn->error);
   if ($results) {
-      $_SESSION["email"] = $email;
-      $_SESSION["user"] = $uname;
-      $_SESSION["first"] = $fname;
-      $_SESSION["last"] = $lname;
-      $_SESSION["logged"] = true;
+      setcookie("email", $email, time()+3600);
+      setcookie("user", $uname, time()+3600);
+      setcookie("first", $fname, time()+3600);
+      setcookie("last", $lname, time()+3600);
+      setcookie("passwd", $npass,  time()+3600);
+      setcookie("logged", true, time()+3600);
   	  header('Location: index.php');
       exit();
   } else {
