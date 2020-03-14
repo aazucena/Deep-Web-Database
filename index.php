@@ -18,7 +18,7 @@
 
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark nav-pills sticky-top">
-    <a class="navbar-brand" href="index.html">
+    <a class="navbar-brand" href="index.php">
       <img src="Images&Videos/logo-alt.png" width="50" height="50" alt=""> The Underground</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navToggler"
       aria-controls="navToggler" aria-expanded="false" aria-label="Open Menu">
@@ -314,6 +314,15 @@
                       </div>
                       <input type="email" id="Email" name="email" class="form-control form-control-sm validate"
                         placeholder="Email Address" required />
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="md-form form-sm input-group mb-4">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text" id="User"><i class="fa fa-user-circle-o prefix"></i></span>
+                      </div>
+                      <input type="text" id="user" name="user" class="form-control form-control-sm validate rounded-right"
+                        placeholder="Username" aria-describedby="username" required />
                     </div>
                   </div>
                   <div class="form-group">

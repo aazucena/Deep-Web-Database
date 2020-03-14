@@ -1,4 +1,9 @@
-
+<?php
+  
+  if(!isset($_COOKIE["logged"])) {
+    header("Location: index.php");
+  } 
+?>
 <!DOCTYPE html>
 <html lang="en">
 <!--Meta-->
@@ -19,7 +24,7 @@
 
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark nav-pills sticky-top">
-    <a class="navbar-brand" href="index.html">
+    <a class="navbar-brand" href="index.php">
       <img src="Images&Videos/logo-alt.png" width="50" height="50" alt=""> The Underground</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navToggler"
       aria-controls="navToggler" aria-expanded="false" aria-label="Open Menu">
@@ -94,15 +99,17 @@
         <div class="container p-3">
           <div class="text-center">
             <img src="Images&Videos/logo-alt2.png" class="img-responsive w-50">
-            <h1 class="text-logored"><?php echo $_COOKIE['uname'];?></h1>
+            <h1 class="text-logored"><?php echo $_COOKIE['user'];?></h1>
           </div>
-          <button class="btn btn-success float-right" type="button" data-toggle="collapse" data-target="#editProfile"
-            aria-expanded="false" aria-controls="edit-profile">
-            Edit Profile
-          </button>
-          <button class="btn btn-danger float-right" type="button" data-toggle="modal" href="deletepro.php">
-            Delete Profile
-          </button>
+          <div class="btn-group-vertical float-right p-3">
+            <button class="btn btn-success mb-2" type="button" data-toggle="collapse" data-target="#editProfile"
+              aria-expanded="false" aria-controls="edit-profile">
+              Edit Profile
+            </button>
+            <button class="btn btn-danger" type="button" data-toggle="modal" data-target="#areyousure">
+              Delete Profile
+            </button>
+          </div>
           <div class="collapse  p-3" id="editProfile">
             <form method="POST" action="editpro.php" role="form">
               <div class="form-group">
@@ -271,25 +278,23 @@
   </div>
 
   <!---Delete-->
-  <div class="modal fade" id="warning" role="dialog" aria-labelledby="dialog" aria-hidden="true" data-backdrop="static">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Warning</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <p>Are you sure you want to continue?</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-danger">Yes</button>
-          <button type="button" class="btn btn-success" data-dismiss="modal">No</button>
+      <div class="modal fade" tabindex="-1" role="dialog" id="areyousure"
+       aria-labelledby="areyousure" aria-hidden="true" data-backdrop="static">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content bg-dark text-white">
+            <div class="modal-header">
+              <h5 class="modal-title">Are You Sure?</h5>
+            </div>
+            <div class="modal-body">
+              <form method="POST" action="deletepro.php" role="form" enctype="multipart/form-data">
+              <button type="submit" class="btn btn-success" name="yes">Yes</button>
+              <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+              </form>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
+  
 
   <!---Registration & Login-->
   <div class="modal fade" id="account" role="dialog" aria-labelledby="regristration" aria-hidden="true"
@@ -318,6 +323,15 @@
                       </div>
                       <input type="email" id="Email" name="email" class="form-control form-control-sm validate"
                         placeholder="Email Address" required />
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="md-form form-sm input-group mb-4">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text" id="User"><i class="fa fa-user-circle-o prefix"></i></span>
+                      </div>
+                      <input type="text" id="user" name="user" class="form-control form-control-sm validate rounded-right"
+                        placeholder="Username" aria-describedby="username" required />
                     </div>
                   </div>
                   <div class="form-group">

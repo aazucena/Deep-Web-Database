@@ -1,8 +1,15 @@
 <?php
-    	include sql.php;
-      $CID=$_REQUEST'cid';
-      $query = "DELETE FROM Client WHERE cid=$cid";
-      $results = mysqli_query($conn, $sql) or die($conn->error);
-
-      header("Location: profile.php");
+if(isset($_POST['yes'])){
+    include 'sql.php';
+    $id = $_COOKIE['id'];
+    $sql = "DELETE FROM Client 
+    WHERE cid=$id";
+    $results = mysqli_query($conn, $sql);
+    if($results){
+        header("Location: logout.php");
+    }
+    else{
+        echo "Error: " . $sql . "<br>" . $conn->error;
+    }
+}
 ?>

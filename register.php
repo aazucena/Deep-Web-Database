@@ -14,6 +14,11 @@ if(isset($_POST['signin'])){
 
   $results = mysqli_query($conn, $sql) or die($conn->error);
   if ($results) {
+    $q = "SELECT * from Client";
+    $r = mysqli_query($conn, $q) or die($conn->error);
+    $value = mysqli_fetch_assoc($r);
+    
+      setcookie("id", $value['cid'], time()+3600);
       setcookie("email", $email, time()+3600);
       setcookie("user", $uname, time()+3600);
       setcookie("first", $fname, time()+3600);
