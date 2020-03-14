@@ -1,3 +1,9 @@
+<?php
+  
+  if(isset($_COOKIE["logged"])) {
+    header("Location: index.php");
+  } 
+?>
 <!DOCTYPE html>
 <html lang="en">
 <!--Meta-->
@@ -12,7 +18,7 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
 
 <head>
-  <title>Underground | Home</title>
+  <title>Underground | Forgot Password</title>
   <link rel="icon" type="image/png" href="Images&Videos/logo-alt.png" />
 </head>
 
@@ -56,7 +62,7 @@
           <ul class="nav justify-content-end">
             <li class="nav-item">
               <a class="nav-link border-0 btn btn-sm btn-circle btn-outline-light d-flex justify-content-center align-items-center"
-                style="overflow: hidden;" href="#account" role="tab" data-toggle="modal" title="Sign Up/Log In"><i class="fa fa-user"
+                style="overflow: hidden;" href="#account" role="tab" data-toggle="modal"><i class="fa fa-user"
                   style="font-size: 1.8em;"></i></a>
             </li>
           </ul>
@@ -90,111 +96,30 @@
   <div class="container-fluid position-absolute" style="top:12% !important;">
     <div class="tab-content">
       <div class="tab-pane active" id="home" role="tabpanel">
-        <div id="adslides" class="carousel slide" data-ride="carousel">
-          <div class="carousel-inner">
-            <div class="carousel-item active">
-              <img class="d-block w-100" src="https://wallpaperstock.net/matrix_wallpapers_34861_852x480.jpg"
-                alt="First slide">
-              <div class="carousel-caption d-none d-md-block">
-                <h3>AD 1</h3>
-                <p>...</p>
-              </div>
-            </div>
-            <div class="carousel-item">
-              <img class="d-block w-100" src="https://wallpaperstock.net/matrix_wallpapers_34861_852x480.jpg"
-                alt="Second slide">
-              <div class="carousel-caption d-none d-md-block">
-                <h3>AD 2</h3>
-                <p>...</p>
-              </div>
-            </div>
-            <div class="carousel-item">
-              <img class="d-block w-100" src="https://wallpaperstock.net/matrix_wallpapers_34861_852x480.jpg"
-                alt="Third slide">
-              <div class="carousel-caption d-none d-md-block">
-                <h3>AD 3</h3>
-                <p>...</p>
-              </div>
-            </div>
-          </div>
-          <a class="carousel-control-prev" href="#adslides" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-          </a>
-          <a class="carousel-control-next" href="#adslides" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-          </a>
-        </div>
+
         <div class="container mt-5" style="top:40% !important;">
           <h1 class="text-center p-3 text-white">Underground</h1>
-          <form method="POST" action="search.php" role="search">
-            <div class="form-group input-group mb-3">
-              <input type="text" class="field form-control w-50" placeholder="Search here..." name="entity"
-                aria-label="entity" aria-describedby="entity-search" value="" />
-              <select class="form-control border" id="categories">
-                <option selected>All Catergories</option>
-                <option value="1">Hitmen</option>
-                <option value="2">Substances</option>
-                <option value="3">Exotics</option>
-                <option value="4">Weapons</option>
-              </select>
-              <div class="input-group-append">
-                <button class="btn btn-secondary btn-search" id="searchsubmit" type="submit">
-                  Search
-                </button>
+          <form method="POST" action="forgot.php" role="search">
+            <div class="form-group">
+              <div class="md-form form-sm input-group mt-5 mb-5">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="eEmail"><i class="fa fa-envelope prefix"></i></span>
+                </div>
+                <input type="email" id="Email" name="getemail" class="form-control form-control-sm validate" placeholder="Email Address"
+                  required />
               </div>
+            </div>
+            <div class="text-center mt-2">
+              <button class="btn btn-light" href="#success" role="tab" data-toggle="list" type="submit" name="getpass">
+                Get Password <i class="fa fa-envelope ml-1"></i>
+              </button>
             </div>
           </form>
-          <div class="card bg-transparent border border-logored">
-            <h2 class="card-header text-white border-0">Recommended</h2>
-            <div class="card-body mb-3 border-0">
-              <div class="card-deck border-0">
-                <a href="https://www.kinder.com/ca/en/">
-                  <div class="card card-inverse text-white bg-logored" style="width: 12rem;">
-                    <img class="card-img-top img-responsive"
-                      src="https://az836796.vo.msecnd.net/media/image/product/en/medium/0006202000005.jpg"
-                      alt="Card image cap">
-                    <div class="card-body">
-                      <h5 class="card-title">Card title</h5>
-                    </div>
-                  </div>
-                </a>
-                <a href="https://www.kinder.com/ca/en/">
-                  <div class="card card-inverse text-white bg-logored" style="width: 12rem;">
-                    <img class="card-img-top img-responsive"
-                      src="https://az836796.vo.msecnd.net/media/image/product/en/medium/0006202000005.jpg"
-                      alt="Card image cap">
-                    <div class="card-body">
-                      <h5 class="card-title">Card title</h5>
-                    </div>
-                  </div>
-                </a>
-                <a href="https://www.kinder.com/ca/en/">
-                  <div class="card card-inverse text-white bg-logored" style="width: 12rem;">
-                    <img class="card-img-top img-responsive"
-                      src="https://az836796.vo.msecnd.net/media/image/product/en/medium/0006202000005.jpg"
-                      alt="Card image cap">
-                    <div class="card-body">
-                      <h5 class="card-title">Card title</h5>
-                    </div>
-                  </div>
-                </a>
-
-                <a href="https://www.kinder.com/ca/en/">
-                  <div class="card card-inverse text-white bg-logored" style="width: 12rem;">
-                    <img class="card-img-top img-responsive"
-                      src="https://az836796.vo.msecnd.net/media/image/product/en/medium/0006202000005.jpg"
-                      alt="Card image cap">
-                    <div class="card-body">
-                      <h5 class="card-title">Card title</h5>
-                    </div>
-                  </div>
-                </a>
-              </div>
-            </div>
-          </div>
         </div>
+      </div>
+      <div class="tab-pane" id="success" role="tabpanel">
+        <p class="text-white">We've got your reset request. If the email address you provided exists you should be
+          getting an email with instructions on what to do next. :)</p>
       </div>
       <div class="tab-pane" id="about" role="tabpanel">
         <p class="text-white">About</p>
@@ -353,7 +278,7 @@
                     Not a member?
                     <a href="#register" class="blue-text">Sign Up</a>
                   </p>
-                  <p><a href="forgot_password.php" class="blue-text">Forgot Password?</a></p>
+                  <p><a href="forgot_password.html" class="blue-text">Forgot Password?</a></p>
                 </div>
                 <button type="button" class="btn btn-outline-light waves-effect ml-auto" data-dismiss="modal">
                   Close
