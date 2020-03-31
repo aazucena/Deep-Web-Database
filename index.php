@@ -205,13 +205,34 @@
           <thead>
             <tr>
               <th title="Field #1">#</th>
-              <th title="Field #2">Category 1</th>
-              <th title="Field #3">Category 2</th>
-              <th title="Field #4">Category 3</th>
-              <th title="Field #5">Catergory 4</th>
+              <th title="Field #2">email</th>
+              <th title="Field #3">username</th>
+              <th title="Field #4">password</th>
+              <th title="Field #5">fname</th>
+              <th title="Field #5">lname</th>
             </tr>
           </thead>
           <tbody>
+		  <?php
+			include 'sql.php';
+			$sql = "SELECT * from Client";
+			$result = mysqli_query($conn, $sql) or die($conn->error);
+			if ($result->num_rows > 0) {
+				while($row = $result->fetch_assoc()) {
+					echo "<tr>
+						<td align='right'>".$row["cid"]."</td>
+						<td>".$row["email"]. "</td> 
+						<td>".$row["username"]. "</td> 
+						<td>".$row["passwd"]. "</td> 
+						<td>".$row["fname"]. "</td> 
+						<td>".$row["lname"]. "</td>";
+				}
+			} else {
+				echo "0 results";
+			}
+			$conn->close();
+		  ?>
+		  <!--
             <tr>
               <td align="right">0</td>
               <td>AAAA</td>
@@ -281,7 +302,7 @@
               <td>CBBC</td>
               <td>DCCD</td>
               <td>ADDA</td>
-            </tr>
+            </tr>-->
           </tbody>
         </table>
       </div>
