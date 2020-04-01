@@ -1,6 +1,6 @@
 CREATE table Product(
-	pid int NOT NULL AUTO_INCREMENT UNIQUE,
-	catid int NOT NULL,
+	pid int NOT NULL AUTO_INCREMENT,
+	cat char(1) NOT NULL CHECK (cat IN ('H', 'E', 'S', 'W')),
 	cid int NOT NULL,
 	pname varchar(255) NOT NULL,
 	pwhy varchar(255) NOT NULL,
@@ -11,6 +11,6 @@ CREATE table Product(
     prodimg longblob NOT NULL,
 	instock int NOT NULL,
 	PRIMARY KEY (pid),
-	FOREIGN KEY (catid) REFERENCES Category(catid),
-	FOREIGN KEY (cid) REFERENCES Client(cid)
+	FOREIGN KEY (cid) REFERENCES Client(cid),
+  	UNIQUE (pid,cat)
 );
