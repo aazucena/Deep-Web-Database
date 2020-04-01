@@ -268,7 +268,7 @@
               </div>
               <div class="form-group">
                 <div class="md-form form-md input-group mb-4">
-                  <textarea class="form-control" id="req" rows="10" placeholder="Requirements"></textarea>
+                  <textarea class="form-control" id="req" name="nhreq" rows="10" placeholder="Requirements"></textarea>
                 </div>
               </div>
             </div>
