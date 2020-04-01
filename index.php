@@ -128,11 +128,11 @@
         </div>
         <div class="container mt-5" style="top:40% !important;">
           <h1 class="text-center p-3 text-white">Underground</h1>
-          <form method="POST" action="search.php" role="search">
+          <form method="GET" action="search.php" role="search">
             <div class="form-group input-group mb-3">
               <input type="text" class="field form-control w-50" placeholder="Search here..." name="entity"
                 aria-label="entity" aria-describedby="entity-search" value="" />
-              <select class="form-control border" id="categories">
+              <select class="form-control border" id="categories" name="cat">
                 <option selected>All Catergories</option>
                 <option value="1">Hitmen</option>
                 <option value="2">Substances</option>
@@ -213,96 +213,25 @@
             </tr>
           </thead>
           <tbody>
-		  <?php
-			include 'sql.php';
-			$sql = "SELECT * from Client";
-			$result = mysqli_query($conn, $sql) or die($conn->error);
-			if ($result->num_rows > 0) {
-				while($row = $result->fetch_assoc()) {
-					echo "<tr>
-						<td align='right'>".$row["cid"]."</td>
-						<td>".$row["email"]. "</td> 
-						<td>".$row["username"]. "</td> 
-						<td>".$row["passwd"]. "</td> 
-						<td>".$row["fname"]. "</td> 
-						<td>".$row["lname"]. "</td>";
-				}
-			} else {
-				echo "0 results";
-			}
-			$conn->close();
-		  ?>
-		  <!--
-            <tr>
-              <td align="right">0</td>
-              <td>AAAA</td>
-              <td>BBBB</td>
-              <td>CCCC</td>
-              <td>DDDD</td>
-            </tr>
-            <tr>
-              <td align="right">1</td>
-              <td>AAAB</td>
-              <td>BBBC</td>
-              <td>CCCD</td>
-              <td>DDDA</td>
-            </tr>
-            <tr>
-              <td align="right">2</td>
-              <td>AABA</td>
-              <td>BBCB</td>
-              <td>CCDC</td>
-              <td>DDAD</td>
-            </tr>
-            <tr>
-              <td align="right">3</td>
-              <td>AABB</td>
-              <td>BBCC</td>
-              <td>CCDD</td>
-              <td>DDAA</td>
-            </tr>
-            <tr>
-              <td align="right">4</td>
-              <td>ABAA</td>
-              <td>BCBB</td>
-              <td>CDCC</td>
-              <td>DADD</td>
-            </tr>
-            <tr>
-              <td align="right">5</td>
-              <td>ABAB</td>
-              <td>BCBC</td>
-              <td>CDCD</td>
-              <td>DADA</td>
-            </tr>
-            <tr>
-              <td align="right">6</td>
-              <td>ABBA</td>
-              <td>BCCB</td>
-              <td>CDDC</td>
-              <td>DAAD</td>
-            </tr>
-            <tr>
-              <td align="right">7</td>
-              <td>ABBB</td>
-              <td>BCCC</td>
-              <td>CDDD</td>
-              <td>DAAA</td>
-            </tr>
-            <tr>
-              <td align="right">8</td>
-              <td>BAAA</td>
-              <td>CBBB</td>
-              <td>DCCC</td>
-              <td>ADDD</td>
-            </tr>
-            <tr>
-              <td align="right">9</td>
-              <td>BAAB</td>
-              <td>CBBC</td>
-              <td>DCCD</td>
-              <td>ADDA</td>
-            </tr>-->
+          <?php
+          include 'sql.php';
+          $sql = "SELECT * from Client";
+          $result = mysqli_query($conn, $sql) or die($conn->error);
+          if ($result->num_rows > 0) {
+            while($row = $result->fetch_assoc()) {
+              echo "<tr>
+                <td align='right'>".$row["cid"]."</td>
+                <td>".$row["email"]. "</td> 
+                <td>".$row["username"]. "</td> 
+                <td>".$row["passwd"]. "</td> 
+                <td>".$row["fname"]. "</td> 
+                <td>".$row["lname"]. "</td>";
+            }
+          } else {
+            echo "0 results";
+          }
+          $conn->close();
+          ?>
           </tbody>
         </table>
       </div>

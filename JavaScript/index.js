@@ -27,6 +27,7 @@ $(document).ready(function () {
                 break;
             case "4":
                 $("#weapons").show();
+                $("#post").show();
                 break;
         }
     } else {
@@ -62,6 +63,7 @@ $("#selectCategory").change(function () {
             break;
         case "4":
             $("#weapons").show();
+            $("#post").show();
             break;
     }
 });
@@ -105,59 +107,7 @@ $('#addprod').click(function () {
         count++;
         $('#ptype').append($('<option>', {
             text: type,
-            value: count
+            value: type
         }));
-    }
-});
-
-$("#wtypes").change(function () {
-    var type = $("#wtypes").val();
-    $(".wfield").hide();
-    $("#post").hide();
-    switch (type) {
-        case "1":
-            $("#arms").show();
-            $("#armtypes").attr({
-                required: "required"
-            });
-            $("#ammo").show();
-            $("#amtype").attr({
-                required: "required",
-                step: "10"
-            });
-            $("#post").show();
-            break;
-        case "2":
-            $("#exp").show();
-            $("#exptypes").attr({
-                required: "required"
-            });
-            $("#ammo").show();
-            $("#amtype").attr({
-                required: "required"
-            });
-            $("#post").show();
-            break;
-        case "3":
-            $("#melee").show();
-            $("#mtypes").attr({
-                required: "required"
-            });
-            $("#post").show();
-            break;
-        case "4":
-            $("#bcn").show();
-            $("#compound").attr({
-                required: "required"
-            });
-            $("#ammo").show();
-            $("#amtype").attr({
-                required: "required"
-            });
-            $("#post").show();
-            break;
-        case "5":
-            $("#post").show();
-            break;
     }
 });
