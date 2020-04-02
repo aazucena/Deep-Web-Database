@@ -9,6 +9,7 @@ CREATE table Product(
 	disctpct int(10) NOT NULL,
 	pdate datetime NOT NULL,
     prodimg longblob NOT NULL,
+	price double NOT NULL,
 	instock int NOT NULL,
 	PRIMARY KEY (pid),
 	FOREIGN KEY (cid) REFERENCES Client(cid),

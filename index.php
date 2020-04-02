@@ -133,14 +133,14 @@
               <input type="text" class="field form-control w-50" placeholder="Search here..." name="entity"
                 aria-label="entity" aria-describedby="entity-search" value="" />
               <select class="form-control border" id="categories" name="cat">
-                <option selected>All Catergories</option>
-                <option value="1">Hitmen</option>
-                <option value="2">Substances</option>
-                <option value="3">Exotics</option>
-                <option value="4">Weapons</option>
+                <option selected value="">All Catergories</option>
+                <option value="H">Hitmen</option>
+                <option value="E">Exotics</option>
+                <option value="S">Substances</option>
+                <option value="W">Weapons</option>
               </select>
               <div class="input-group-append">
-                <button class="btn btn-secondary btn-search" id="searchsubmit" type="submit">
+                <button class="btn btn-secondary btn-search" id="searchsubmit" name="ssubmit" type="submit">
                   Search
                 </button>
               </div>
@@ -150,47 +150,23 @@
             <h2 class="card-header text-white border-0">Recommended</h2>
             <div class="card-body mb-3 border-0">
               <div class="card-deck border-0">
-                <a href="https://www.kinder.com/ca/en/">
-                  <div class="card card-inverse text-white bg-logored" style="width: 12rem;">
-                    <img class="card-img-top img-responsive"
-                      src="https://az836796.vo.msecnd.net/media/image/product/en/medium/0006202000005.jpg"
-                      alt="Card image cap">
-                    <div class="card-body">
-                      <h5 class="card-title">Card title</h5>
+                <?php
+                  include 'sql.php'; 
+                  $sql = "SELECT pid, cat, pname, prodimg from Product LIMIT 5";
+                  $result = mysqli_query($conn, $sql) or die($conn->error);
+                  while($row=mysqli_fetch_array($result)){
+                  echo " <a href='product.php?pid=".$row['pid']."&cat=".$row['cat']."'>
+                  <div class='card card-inverse text-white bg-logored' style='width: 12rem;'>
+                    <img class='card-img-top img-responsive'
+                    src='data:image/jpeg;base64,".base64_encode( $row['prodimg'] )."' 
+                      alt='Card image cap'>
+                    <div class='card-body'>
+                      <h5 class='card-title'><a href='product.php?pid=".$row['pid']."&cat=".$row['cat']."'>".$row['pname']."</a></h5>
                     </div>
                   </div>
-                </a>
-                <a href="https://www.kinder.com/ca/en/">
-                  <div class="card card-inverse text-white bg-logored" style="width: 12rem;">
-                    <img class="card-img-top img-responsive"
-                      src="https://az836796.vo.msecnd.net/media/image/product/en/medium/0006202000005.jpg"
-                      alt="Card image cap">
-                    <div class="card-body">
-                      <h5 class="card-title">Card title</h5>
-                    </div>
-                  </div>
-                </a>
-                <a href="https://www.kinder.com/ca/en/">
-                  <div class="card card-inverse text-white bg-logored" style="width: 12rem;">
-                    <img class="card-img-top img-responsive"
-                      src="https://az836796.vo.msecnd.net/media/image/product/en/medium/0006202000005.jpg"
-                      alt="Card image cap">
-                    <div class="card-body">
-                      <h5 class="card-title">Card title</h5>
-                    </div>
-                  </div>
-                </a>
-
-                <a href="https://www.kinder.com/ca/en/">
-                  <div class="card card-inverse text-white bg-logored" style="width: 12rem;">
-                    <img class="card-img-top img-responsive"
-                      src="https://az836796.vo.msecnd.net/media/image/product/en/medium/0006202000005.jpg"
-                      alt="Card image cap">
-                    <div class="card-body">
-                      <h5 class="card-title">Card title</h5>
-                    </div>
-                  </div>
-                </a>
+                </a>";
+                  }
+                ?>
               </div>
             </div>
           </div>
@@ -312,8 +288,7 @@
             </div>
             <div class="tab-pane fade" id="register" role="tabpanel">
               <div class="modal-body">
-                <form method="POST" action="register.php" role="form" id="fregister"
-enctype="multipart/form-data">
+                <form method="POST" action="register.php" role="form" id="fregister" enctype="multipart/form-data">
                   <div class="form-group">
                     <div class="md-form form-sm input-group mt-5 mb-4">
                       <div class="input-group-prepend">

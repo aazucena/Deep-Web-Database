@@ -7,32 +7,56 @@ $(document).ready(function () {
     });
     var pathname = window.location.pathname;
     var category = $("#selectCategory").val();
-    if (category && pathname == "/update.html") {
+    if (category && pathname == "/update.php") {
         $(".cfield").hide();
         switch (category) {
-            case "1":
+            case "H":
                 $("#hitmen").show();
                 $("#post").show();
+                $("#hitmen input").prop('required', true);
+                $("#hitmen select").prop('required', true);
+                $("#hitmen textarea").prop('required', false);
                 $(".wfield").hide();
                 break;
-            case "2":
-                $("#substances").show();
-                $("#post").show();
-                $(".wfield").hide();
-                break;
-            case "3":
+            case "E":
                 $("#exotics").show();
+                $("#exotics input").prop('required', true);
+                $("#exotics select").prop('required', true);
+                $("#exotics textarea").prop('required', false);
                 $("#post").show();
                 $(".wfield").hide();
                 break;
-            case "4":
+            case "S":
+                $("#substances").show();
+                $("#substances input").prop('required', true);
+                $("#substances select").prop('required', true);
+                $("#substances textarea").prop('required', true);
+                $("#post").show();
+                $(".wfield").hide();
+                break;
+            case "W":
                 $("#weapons").show();
+                $("#weapons input").prop('required', true);
+                $("#weapons select").prop('required', true);
+                $("#weapons textarea").prop('required', true);
                 $("#post").show();
                 break;
         }
     } else {
         $(".cfield").hide();
         $(".wfield").hide();
+        $("#hitmen input").prop('required', false);
+        $("#hitmen select").prop('required', false);
+        $("#hitmen textarea").prop('required', false);
+        $("#exotics input").prop('required', false);
+        $("#exotics select").prop('required', false);
+        $("#exotics textarea").prop('required', false);
+        $("#substances input").prop('required', false);
+        $("#substances select").prop('required', false);
+        $("#substances textarea").prop('required', false);
+        $("#weapons input").prop('required', false);
+        $("#weapons select").prop('required', false);
+        $("#substances textarea").prop('required', false);
         $("#post").hide();
     }
 });
@@ -44,25 +68,49 @@ $("#navList a").on("click", function (e) {
 $("#selectCategory").change(function () {
     var category = $("#selectCategory").val();
     $(".cfield").hide();
-    $("#post").hide();
+    $(".wfield").hide();
+    $("#hitmen input").prop('required', false);
+    $("#hitmen select").prop('required', false);
+    $("#hitmen textarea").prop('required', false);
+    $("#exotics input").prop('required', false);
+    $("#exotics select").prop('required', false);
+    $("#exotics textarea").prop('required', false);
+    $("#substances input").prop('required', false);
+    $("#substances select").prop('required', false);
+    $("#substances textarea").prop('required', false);
+    $("#weapons input").prop('required', false);
+    $("#weapons select").prop('required', false);
+    $("#substances textarea").prop('required', false);
     switch (category) {
-        case "1":
+        case "H":
             $("#hitmen").show();
             $("#post").show();
+            $("#hitmen input").prop('required', true);
+            $("#hitmen select").prop('required', true);
+            $("#hitmen textarea").prop('required', false);
             $(".wfield").hide();
             break;
-        case "2":
-            $("#substances").show();
-            $("#post").show();
-            $(".wfield").hide();
-            break;
-        case "3":
+        case "E":
             $("#exotics").show();
+            $("#exotics input").prop('required', true);
+            $("#exotics select").prop('required', true);
+            $("#exotics textarea").prop('required', false);
             $("#post").show();
             $(".wfield").hide();
             break;
-        case "4":
+        case "S":
+            $("#substances").show();
+            $("#substances input").prop('required', true);
+            $("#substances select").prop('required', true);
+            $("#substances textarea").prop('required', true);
+            $("#post").show();
+            $(".wfield").hide();
+            break;
+        case "W":
             $("#weapons").show();
+            $("#weapons input").prop('required', true);
+            $("#weapons select").prop('required', true);
+            $("#weapons textarea").prop('required', true);
             $("#post").show();
             break;
     }
@@ -107,7 +155,8 @@ $('#addprod').click(function () {
         count++;
         $('#ptype').append($('<option>', {
             text: type,
-            value: type
+            value: type,
+            selected: true
         }));
     }
 });

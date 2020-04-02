@@ -19,7 +19,7 @@
 
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark nav-pills sticky-top">
-    <a class="navbar-brand" href="index.html">
+    <a class="navbar-brand" href="index.php">
       <img src="/Images&Videos/logo-alt.png" width="50" height="50" alt="" />
       The Underground</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navToggler"
@@ -32,14 +32,14 @@
 		  <input type="text" class="field form-control w-50" placeholder="Search here..." name="entity"
 			aria-label="entity" aria-describedby="entity-search" value="" />
 		  <select class="form-control border" id="categories" name="cat">
-			<option selected>All Catergories</option>
-			<option value="1">Hitmen</option>
-			<option value="2">Substances</option>
-			<option value="3">Exotics</option>
-			<option value="4">Weapons</option>
+        <option selected value="">All Catergories</option>
+        <option value="H">Hitmen</option>
+        <option value="E">Exotics</option>
+        <option value="S">Substances</option>
+        <option value="W">Weapons</option>
 		  </select>
 		  <div class="input-group-append">
-			<button class="btn btn-secondary btn-search" id="searchsubmit" type="submit">
+			<button class="btn btn-secondary btn-search" id="searchsubmit" name="ssubmit" type="submit">
 			  Search
 			</button>
 		  </div>
@@ -114,32 +114,46 @@
       <div class="tab-pane active" id="home" role="tabpanel">
         <div class='container-fluid text-white p-5 border border-logored '>
 		<?php
+    if(isset($_GET['ssubmit'])){
+      $sql="";
 			$cat = $_GET['cat'];
-			$text = $_GET['entity'];
-			if ($cat > 0){
-			$sql = "SELECT * from Product WHERE cid='".$cat."' AND pname LIKE '%".mysql_real_escape_string($text)."%'";
-			}
-			else{
-			$sql = "SELECT * from Product WHERE pname LIKE '%".mysql_real_escape_string($text)."%'";
-			}
+      $text = $_GET['entity'];
+      $c="";
+      switch($cat){
+        case 'H':
+        case 'E':
+        case 'S':
+        case 'W':
+          $sql = "SELECT * from Product WHERE pname LIKE '%".$text."%' AND cat='$cat' ";
+          $c=$_GET['cat'];
+          break;
+        default:
+          $sql = "SELECT * from Product WHERE pname LIKE '%".$text."%'";
+         break;
+      }
 
-			$result = mysqli_query($conn, $sql) or die($conn->error);
-			$count = mysqli_num_rows($result);
-
-			if ($count > 0){
+      $pid=$value['pid'];
+      $result = mysqli_query($conn, $sql) or die($conn->error);
 			  while($value=mysqli_fetch_array($result)){
-				echo "<div class='card card-inverse text-white bg-transparent p-1 border border-logored' style='width: 12rem;'>
-						<img class=' card-img-top img-responsive' src='data:image/jpeg;base64,".base64_encode($value['prodimg')."' alt='Product Image'>
+        echo "
+        <a href='product.php?pid=".$value['pid']."&cat=".$c."'>
+        <div class='card card-inverse text-white bg-transparent 
+          p-1 border border-logored' style='width: 30rem;'>
+						<img class='img-fluid w-100' src='data:image/jpeg;base64,".base64_encode( $value['prodimg'] )."' alt='Product Image'>
 							<div class='card-body'>
-							<h5 class='card-title'>".$value['pname']."</h5>
+              <h5 class='card-title'>
+                <a href='product.php?pid=".$value['pid']."&cat=".$c."'>".$value['pname']."</a>
+              </h5>
 						</div>
-					  </div> ";
+            </div>
+            </a> ";
 				}
-			}
-			else{
-				header('Location: index.php');
-				exit();
-			}
+    }
+    else{
+      header('Location: index.php');
+      exit();
+    }
+    
 		?> 
 		</div>
 		
@@ -201,14 +215,23 @@
           <div class="tab-content">
             <div class="tab-pane fade in show active" id="login" role="tabpanel">
               <div class="modal-body mb-1">
-                <form method="POST" action="login.php" role="form">
+                <form method="POST" action="login.php" role="form" enctype="multipart/form-data">
                   <div class="form-group">
                     <div class="md-form form-sm input-group mt-5 mb-5">
                       <div class="input-group-prepend">
                         <span class="input-group-text" id="eEmail"><i class="fa fa-envelope prefix"></i></span>
                       </div>
-                      <input type="email" id="Email" class="form-control form-control-sm validate"
+                      <input type="email" id="Email" name="email" class="form-control form-control-sm validate"
                         placeholder="Email Address" required />
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="md-form form-sm input-group mb-4">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text" id="User"><i class="fa fa-user-circle-o prefix"></i></span>
+                      </div>
+                      <input type="text" id="user" name="user" class="form-control form-control-sm validate rounded-right"
+                        placeholder="Username" aria-describedby="username" required />
                     </div>
                   </div>
                   <div class="form-group">
@@ -218,16 +241,16 @@
                           <i class="fa fa-lock prefix"></i>
                         </span>
                       </div>
-                      <input type="password" id="Pass" class="form-control form-control-sm validate"
+                      <input type="password" id="Pass" name="pass" class="form-control form-control-sm validate"
                         placeholder="Password" required />
                     </div>
                   </div>
                   <div class="form-group form-check">
-                    <input type="checkbox" class="form-check-input" id="keepme">
+                    <input type="checkbox" class="form-check-input" id="keepme" name="rem">
                     <label class="form-check-label" for="#keepme">Keep me signed in</label>
                   </div>
                   <div class="text-center mt-2">
-                    <button class="btn btn-light">
+                    <button class="btn btn-light" type="submit" name="login">
                       Log in <i class="fa fa-sign-in ml-1"></i>
                     </button>
                   </div>
@@ -239,7 +262,7 @@
                     Not a member?
                     <a href="#register" class="blue-text">Sign Up</a>
                   </p>
-                  <p><a href="forgot_password.html" class="blue-text">Forgot Password?</a></p>
+                  <p><a href="forgot_password.php" class="blue-text">Forgot Password?</a></p>
                 </div>
                 <button type="button" class="btn btn-outline-light waves-effect ml-auto" data-dismiss="modal">
                   Close
@@ -248,12 +271,11 @@
             </div>
             <div class="tab-pane fade" id="register" role="tabpanel">
               <div class="modal-body">
-                <form method="POST" action="register.php" role="form" id="fregister"
-enctype="multipart/form-data">
+                <form method="POST" action="register.php" role="form" id="fregister" enctype="multipart/form-data">
                   <div class="form-group">
                     <div class="md-form form-sm input-group mt-5 mb-4">
                       <div class="input-group-prepend">
-                        <span class="input-group-text" name="nemail" id="nEmail"><i class="fa fa-envelope prefix"></i></span>
+                        <span class="input-group-text" id="nEmail"><i class="fa fa-envelope prefix"></i></span>
                       </div>
                       <input type="email" id="newEmail" name="nemail" class="form-control form-control-sm validate"
                         placeholder="New Email Address" required />
@@ -325,8 +347,8 @@ enctype="multipart/form-data">
                     </label>
                   </div>
                   <div class="text-center form-sm mt-2">
-                    <button class="btn btn-light" type="submit" form="fregister" name="reg">
-                      Sign up <i class="fa fa-sign-in ml-1"></i>
+                    <button class="btn btn-light" type="submit" name="signin" value="Sign up">
+                      Sign Up
                     </button>
                   </div>
                 </form>

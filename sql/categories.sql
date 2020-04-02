@@ -17,15 +17,15 @@ CREATE table Exotics(
   	cat CHAR(1) DEFAULT 'E' NOT NULL,
 	CHECK (cat='E'),
 	exotype varchar(255),
-	typeid int UNIQUE,
 	FOREIGN KEY (pid,cat) REFERENCES Product(pid,cat)
-	FOREIGN KEY (typeid) REFERENCES ProductType(typeid)
 );
 
 CREATE table ProductType(
 	typeid int NOT NULL AUTO_INCREMENT,
+	pid int NOT NULL,
 	ptypename varchar(255) NOT NULL UNIQUE,
-	PRIMARY KEY (typeid)
+	PRIMARY KEY (typeid),
+	FOREIGN KEY (pid) REFERENCES Exotics(pid)
 );
 
 CREATE table Substances(

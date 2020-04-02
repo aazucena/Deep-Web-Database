@@ -1,4 +1,5 @@
-<?php include 'sql.php';
+<?php 
+      include 'sql.php';
 
       if(!isset($_COOKIE["logged"])) {
 		echo '<script type="text/javascript">alert("You are not logged in yet")</script>';
@@ -26,7 +27,7 @@
 
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark nav-pills sticky-top">
-    <a class="navbar-brand" href="index.html">
+    <a class="navbar-brand" href="index.php">
       <img src="/Images&Videos/logo-alt.png" width="50" height="50" alt="" />
       The Underground</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navToggler"
@@ -34,19 +35,19 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="justify-content-end" style="width: 60%">
-      <form method="POST" action="search.php" role="search">
-        <div class="form-group input-group ">
-          <input type="text" class="field form-control rounded-left" placeholder="Search here..." name="entity"
+      <form method="GET" action="search.php" role="search">
+        <div class="form-group input-group mb-3">
+          <input type="text" class="field form-control w-50" placeholder="Search here..." name="entity"
             aria-label="entity" aria-describedby="entity-search" value="" />
+          <select class="form-control border" id="categories" name="cat">
+            <option selected>All Catergories</option>
+            <option value="H">Hitmen</option>
+            <option value="E">Exotics</option>
+            <option value="S">Substances</option>
+            <option value="W">Weapons</option>
+          </select>
           <div class="input-group-append">
-            <select class="form-control border w-100 rounded-0" id="categories">
-              <option selected>All Catergories</option>
-              <option value="1">Hitmen</option>
-              <option value="2">Substances</option>
-              <option value="3">Exotics</option>
-              <option value="4">Weapons</option>
-            </select>
-            <button class="btn btn-secondary btn-search" id="searchsubmit" type="submit">
+            <button class="btn btn-secondary btn-search" id="searchsubmit" name="ssubmit" type="submit">
               Search
             </button>
           </div>
@@ -121,7 +122,7 @@
       <div class="tab-pane active" id="home" role="tabpanel">
         <div class="container p-3">
           <h2 class="text-logored">Sell Your Product</h2>
-          <form method="POST" action="add.php" role="form">
+          <form method="POST" action="add.php" role="form" enctype="multipart/form-data">
             <div class="form-group">
               <div class="form-md input-group mt-5 mb-4">
                 <div class="input-group-prepend">
@@ -144,8 +145,7 @@
             <div class="form-group">
               <div class="form-md input-group mb-4">
                 <div class="custom-file">
-                  <input type="file" class="custom-file-input" id="prodImgs" name="npic"
-                    data-show-upload="true" data-show-caption="true">
+                  <input type="file" class="custom-file-input" id="prodImgs" name="npic" required>
                   <label class="custom-file-label" for="prodImgs" id="pimg">Choose images</label>
                 </div>
               </div>
@@ -171,10 +171,10 @@
                 </div>
                 <select class="custom-select" id="selectCategory" name="ncat">
                   <option selected>Choose Category...</option>
-                  <option value="1">Hitmen</option>
-                  <option value="2">Exotics</option>
-                  <option value="3">Substances</option>
-                  <option value="4">Weapons</option>
+                  <option value="H">Hitmen</option>
+                  <option value="E">Exotics</option>
+                  <option value="S">Substances</option>
+                  <option value="W">Weapons</option>
                 </select>
               </div>
             </div>
@@ -202,7 +202,7 @@
               </div>
             </div>
             <div class="form-row">
-              <div class="col-md-6 mb-6 input-group">
+              <div class="col-md-12 mb-6 input-group">
                 <textarea class="form-control" id="desc" name="ndesc" rows="10" placeholder="Product Description"></textarea>
               </div>
             </div>
@@ -276,7 +276,6 @@
               <hr class="text-white bg-white" />
 
               <div class="form-row">
-			  
                 <div class="col-md-4 mb-4 input-group">
                   <div class="input-group-prepend">
                     <span class="input-group-text" id="sGrade"><i class="fa fa-plus prefix"></i></span>
@@ -302,7 +301,7 @@
                     <span class="input-group-text" id="subType"><i class="fa fa-flask prefix"></i></span>
                   </div>
                   <select class="custom-select" id="subtypes" name="nstype">
-                    <option selected>Choose Exotic Type</option>
+                    <option selected>Choose Substance Type</option>
                     <option value="Cannabinoids">Cannabinoids</option>
                     <option value="Stimulants">Stimulants</option>
                     <option value="Opiods">Opiods</option>
@@ -382,7 +381,7 @@
               </div>
             </div>
             <div class="text-center form-md pb-3 mb-4" id="post" name="post">
-              <button class="btn btn-light float-right">
+              <button class="btn btn-light float-right" type="submit" name="post" id="spost">
                 Post <i class="fa fa-pencil ml-1"></i>
               </button>
             </div>

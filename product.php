@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <!--Meta-->
@@ -18,32 +19,32 @@
 
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark nav-pills sticky-top">
-    <a class="navbar-brand" href="index.html">
+    <a class="navbar-brand" href="index.php">
       <img src="/Images&Videos/logo-alt.png" width="50" height="50" alt="" />
       The Underground</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navToggler"
       aria-controls="navToggler" aria-expanded="false" aria-label="Open Menu">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="justify-content-end" style="width: 60%">
-      <form method="POST" action="search.php" role="search">
-        <div class="form-group input-group ">
-          <input type="text" class="field form-control rounded-left" placeholder="Search here..." name="entity"
-            aria-label="entity" aria-describedby="entity-search" value="" />
+    <div class="justify-content-end" style="width: 60%">      
+      <form method="GET" action="search.php" role="search">
+        <div class="form-group input-group mb-3">
+          <input type="text" class="field form-control w-50" placeholder="Search here..." name="entity"
+          aria-label="entity" aria-describedby="entity-search" value="" />
+          <select class="form-control border" id="categories" name="cat">
+            <option selected value="">All Catergories</option>
+            <option value="H">Hitmen</option>
+            <option value="E">Exotics</option>
+            <option value="S">Substances</option>
+            <option value="W">Weapons</option>
+          </select>
           <div class="input-group-append">
-            <select class="form-control border w-100 rounded-0" id="categories">
-              <option selected>All Catergories</option>
-              <option value="1">Hitmen</option>
-              <option value="2">Substances</option>
-              <option value="3">Exotics</option>
-              <option value="4">Weapons</option>
-            </select>
-            <button class="btn btn-secondary btn-search" id="searchsubmit" type="submit">
-              Search
-            </button>
+          <button class="btn btn-secondary btn-search" id="searchsubmit" name="ssubmit" type="submit">
+            Search
+          </button>
           </div>
-        </div>
-      </form>
+            </div>
+        </form>
     </div>
     <div class="collapse navbar-collapse justify-content-end">
       <ul class="nav justify-content-center">
@@ -59,14 +60,43 @@
         </li>
       </ul>
     </div>
-    <ul class="nav justify-content-end">
-      <li class="nav-item pl-1">
-        <a class="nav-link border-0 btn btn-sm btn-circle btn-outline-light d-flex justify-content-center align-items-center"
-          style="overflow: hidden;" href="#account" role="tab" data-toggle="modal"><i class="fa fa-user"
-            style="font-size: 1.8em;"></i></a>
-      </li>
-    </ul>
+    <?php
+      if(isset($_COOKIE["logged"]) || $_COOKIE["logged"] === true) {
+          echo'
+          <ul class="nav justify-content-end">
+            <li class="nav-item">
+              <a class="nav-link border-0 btn btn-sm btn-circle btn-outline-light d-flex justify-content-center align-items-center"
+                style="overflow: hidden;" data-container="body" data-toggle="popover" data-placement="bottom">
+                <img class="img-responsive rounded" src="Images&Videos/logo-alt2.png" style="
+                object-fit: cover; width: 40px; margin-right: 5px;">
+              </a>
+            </li>
+          </ul>
+          ';
+      } else {
+          echo '
+          <ul class="nav justify-content-end">
+            <li class="nav-item">
+              <a class="nav-link border-0 btn btn-sm btn-circle btn-outline-light d-flex justify-content-center align-items-center"
+                style="overflow: hidden;" href="#account" role="tab" data-toggle="modal" title="Sign Up/Log In"><i class="fa fa-user"
+                  style="font-size: 1.8em;"></i></a>
+            </li>
+          </ul>
+          ';
+      }
+      ?>
   </nav>
+  <ul id="popover-content" class="list-group bg-dark border-logored" style="display: none">
+    <h5 class="text-white">Signed in as: <?php echo $_COOKIE["user"];?></h5>
+    <hr class="text-white bg-white" />
+    <a href="profile.php" class="list-group-item bg-dark text-logored border-logored">Your Profile</a>
+    <a href="productlist.html" class="list-group-item bg-dark text-logored border-logored">Your Products</a>
+    <a href="orders.html" class="list-group-item bg-dark text-logored border-logored">Your Orders</a>
+    <hr class="text-white bg-white" />
+    <a href="#account" role="tab" data-toggle="modal" class="list-group-item bg-dark text-logored border-logored">Switch
+      Accounts</a>
+    <a href="logout.php" class="list-group-item bg-dark text-logored border-logored">Sign Out</a>
+  </ul>
   <div class="pos-f-t">
     <div class="collapse" id="navToggler">
       <div class="list-group list-group-horizontal list-group-dark" id="navList" role="tablist">
@@ -81,15 +111,34 @@
   </div>
   <div class="position-absolute w-100">
     <div class="tab-content">
-      <div class="tab-pane active" id="home" role="tabpanel">
-        <nav aria-label="breadcrumb">
-          <ol class="breadcrumb bg-dark border border-logored border-left-0 border-right-0">
-            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-            <li class="breadcrumb-item"><a href="#">Category</a></li>
-            <li class="breadcrumb-item"><a href="#">Exotics</a></li>
-            <li class="breadcrumb-item"><a href="#">Food</a></li>
-          </ol>
-        </nav>
+      <div class="tab-pane active pt-3" id="home" role="tabpanel">
+        <?php
+          include 'sql.php';
+          $sql=$result=$row="";
+          $cat=$_GET['cat'];
+          $pid=$_GET['pid'];
+          switch($cat){
+            case 'H':
+              $sql = "SELECT * FROM Product p JOIN Hitmen h ON p.pid=h.pid WHERE p.pid=$pid LIMIT 1";
+              break;
+            case 'E':
+              $sql = "SELECT * FROM Product p 
+              JOIN Exotics e ON p.pid=e.pid 
+              JOIN ProductType pt ON e.pid=pt.pid 
+              WHERE p.pid=$pid LIMIT 1";
+              break;
+            case 'S':
+              $sql = "SELECT * FROM Product p JOIN Substances s ON p.pid=s.pid WHERE p.pid=$pid LIMIT 1";
+              break;
+            case 'W':
+              $sql = "SELECT * FROM Product p JOIN Weapons w ON p.pid=w.pid WHERE p.pid=$pid LIMIT 1";
+              break;
+            }
+          $result = mysqli_query($conn,$sql) or die($conn->error);
+          $row = mysqli_fetch_array($result);
+          $nprice = ($row['disctpct']/100) * $row['price'];
+          $dprice = $row['price'] - ($nprice);
+        ?>
         <div class="p-3 text-white">
           <div class="row">
             <div class="col-4 overflow-hidden">
@@ -98,10 +147,10 @@
                 alt="Kinder Surprise" />
             </div>
             <div class="col-5">
-              <h1>Kinder Surprise Egg Toy Chocolate</h1>
-              <span class="lead">Illegal in USA, UK, and Chile</span>
+              <h1><?php echo $row['pname'];?></h1>
+              <span class="lead"><?php echo $row['pwhy'];?></span>
               <hr class="text-white bg-white" />
-              <div class="lead">Condition: <span id="cond">New</span></div>
+              <div class="lead">Condition: <span id="cond"><?php echo $row['cond'];?></span></div>
               <br />
               <div class="input-group w-50">
                 <div class="input-group-prepend">
@@ -110,30 +159,76 @@
                 <input type="text" class="form-control p-3 rounded-0" name="qt" value="1" aria-describedby="qt" />
               </div>
               <br />
-              <span class="lead">Product Type</span>
-              <div class="btn-group-toggle" data-toggle="buttons" id="protypes">
-                <label class="btn btn-dark">
-                  <input type="radio" name="options" autocomplete="off" />Carton Box
-                </label>
-                <label class="btn btn-dark">
-                  <input type="radio" name="options" autocomplete="off" />Plastic Bag
-                </label>
-                <label class="btn btn-dark">
-                  <input type="radio" name="options" autocomplete="off" />Paper Wrap
-                </label>
-              </div>
+              <?php
+              switch($cat){
+                case 'H':
+                  echo"<div class='lead'>Hitman Name: <span id='hname'>".$row['hname']."</span></div>";
+                  echo"<div class='lead'>Hitman's Email: <span id='hemail'>".$row['heamil']."</span></div>";
+                  echo"<div class='lead'>Gender: <span id='g'>".$row['gender']."</span></div>";
+                  echo"<div class='lead'>Job Type: <span id='htype'>".$row['request']."</span></div>";
+                  echo"<div class='lead'>Rate: <span id='rate'>".$row['rate']."</span></div>";
+                  break;
+                case 'E':
+                  $ssql = "SELECT * FROM ProductType WHERE pid=$pid";
+                  $r = mysqli_query($conn,$ssql) or die($conn->error);
+
+                  echo"<div class='lead'>Exotic Type: <span id='etype'>".$row['exotype']."</span></div><br>";
+                  echo "
+                  <span class='lead'>Product Type</span>
+                  <div class='btn-group-toggle' data-toggle='buttons' id='protypes'>";
+                  while($rec = mysqli_fetch_array($r)){
+                    echo "
+                    <label class='btn btn-dark'>
+                      <input type='radio' name='options' autocomplete='off' />".$rec['ptypename']."
+                    </label>";
+                  }
+                  echo "</div> ";
+                  break;
+                case 'S':
+                  $gr="";
+                  echo"<div class='lead'>Substances Type: <span id='stype'>".$row['stype']."</span></div>";
+                  echo"<div class='lead'>Weight(Grams): <span id='stype'>".$row['gram']."</span></div>";
+                  if($row['grade']=="U"){
+                    $gr="N/A";
+                  }
+                  else{
+                    $gr = $row['grade'];
+                  }
+                  echo"<div class='lead'>Weight(Grams): <span id='stype'>".$gr."</span></div>";
+                  break;
+                case 'W':
+                  $weapon="";
+                  switch($row['wtype']){
+                    case 'F':
+                      $weapon="Firearms/Ranged";
+                      break;
+                    case 'E':
+                      $weapon="Explosives";
+                      break;
+                    case 'M':
+                      $weapon="Melee";
+                      break;
+                    case 'C':
+                      $weapon="Chemical/Biological/Nuclear";
+                      break;
+                    case 'U':
+                      $weapon="Miscellenous";
+                      break;
+                  }
+                    echo"<div class='lead'>Weapons Type: <span id='wtype'>".$weapon."</span></div>";
+                  break;
+                }
+              ?>
               <hr class="text-white bg-white" />
               <div class="clearfix">
                 <div class="lead float-left">
-                  Deal Price: <span id="price">16BTC</span><small class="">(<b id="dsct">60%</b> Off!)</small><br />
-                  Before Price: <del>40BTC</del><br />
-                  You Save: <span>24BTC</span>
+                  Deal Price: <span id="price"><?php echo $dprice;?>BTC</span><small class="">(<b id="dsct"><?php echo $row['disctpct'];?>%</b> Off!)</small><br />
+                  Before Price: <del><?php echo $row['price'];?>BTC</del><br />
+                  You Save: <span><?php echo $nprice;?>BTC</span>
                 </div>
                 <div class="float-right">
                   <input type="submit" class="btn btn-secondary rounded-0 bg-logored pl-3 pr-3" name="order"
                     value="Order Now" />
-                  <br />
-                  <a class="btn btn-secondary rounded-0 pl-4 w-100 pr-4 mt-1" href="sell.html">Sell it?</a>
                 </div>
               </div>
               <hr class="text-white bg-white" />
@@ -148,10 +243,27 @@
                 <div class="card-body">
                   <h6 class="card-subtitle mb-2"></h6>
                   <div class="card-text">
-                    <span id="stock">90</span> - In Stock
+                    <?php
+                      $stock = $row['instock'];
+                      if($stock<=0){
+                        echo "Out Of Stock";
+                      }
+                      else if($stock > 0 && $stock <=10){
+                        echo "Only ".$stock." left in stock";
+                        
+                      }
+                      else{
+                        echo "In Stock";
+                      }
+                    ?> 
                   </div>
                   <hr class="text-white bg-white" />
-                  <a href="#" class="card-link">Contact Seller</a>
+                  <?php
+                    $cli="SELECT * FROM Client WHERE cid=".$row['cid']."";
+                    $re = mysqli_query($conn,$cli) or die($conn->error);
+                    $rec = mysqli_fetch_array($re);
+                  ?>
+                  <a href="<?php echo "mailto:".$rec['email'];?>" class="card-link">Contact Seller</a>
                   <div class="card-text">
                     Posted <span id="timestamp">6</span> hours ago
                   </div>
@@ -159,80 +271,19 @@
               </div>
             </div>
           </div>
-          <hr class="text-white bg-white" />
-          <h2>Product Specification</h2>
-          <ul class="lead">
-            <li>Brand: <span id="brand">Ferrero</span></li>
-            ...
-          </ul>
+          <?php 
+          if($cat=='H'){
+            echo "<hr class='text-white bg-white' />
+            <h2>Hitman Requirements</h2>".$row['req'];
+          }
+          ?>
           <hr class="text-white bg-white" />
           <h2>Product Description</h2>
           <p class="lead" id="desc">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Magna
-            sit amet purus gravida quis blandit. Ultricies tristique nulla
-            aliquet enim tortor at auctor urna nunc. Nullam vehicula ipsum a
-            arcu cursus. Donec et odio pellentesque diam volutpat commodo sed.
-            Risus in hendrerit gravida rutrum quisque non tellus orci. Tellus
-            elementum sagittis vitae et leo duis ut diam. Sit amet volutpat
-            consequat mauris nunc congue nisi vitae. Ipsum consequat nisl vel
-            pretium lectus. Urna neque viverra justo nec ultrices. Vestibulum
-            morbi blandit cursus risus at ultrices mi tempus imperdiet.
-            Sagittis aliquam malesuada bibendum arcu vitae elementum curabitur
-            vitae. Consequat ac felis donec et odio pellentesque diam
-            volutpat. Duis convallis convallis tellus id interdum velit
-            laoreet id donec.
-            <br />
-            Commodo odio aenean sed adipiscing diam donec adipiscing. Faucibus
-            vitae aliquet nec ullamcorper sit amet risus nullam. Lobortis
-            feugiat vivamus at augue eget arcu. Risus in hendrerit gravida
-            rutrum. Pretium quam vulputate dignissim suspendisse. Imperdiet
-            sed euismod nisi porta lorem. Accumsan tortor posuere ac ut
-            consequat. Magna sit amet purus gravida. Pellentesque massa
-            placerat duis ultricies lacus. Ac tincidunt vitae semper quis
-            lectus nulla at. Cras sed felis eget velit aliquet sagittis id
-            consectetur purus. Est placerat in egestas erat imperdiet sed
-            euismod nisi. Sed tempus urna et pharetra pharetra massa.
-            Consectetur adipiscing elit ut aliquam purus. Eu consequat ac
-            felis donec et odio pellentesque diam. Nunc non blandit massa enim
-            nec dui nunc. Vitae congue eu consequat ac.
-            <br />
-            Donec et odio pellentesque diam volutpat. Ornare arcu odio ut sem
-            nulla. Id volutpat lacus laoreet non curabitur gravida. Velit
-            scelerisque in dictum non consectetur a. In iaculis nunc sed augue
-            lacus viverra. Cursus vitae congue mauris rhoncus aenean vel elit.
-            Netus et malesuada fames ac turpis. Duis at tellus at urna. Donec
-            adipiscing tristique risus nec feugiat in fermentum. Massa id
-            neque aliquam vestibulum. Aliquam ultrices sagittis orci a
-            scelerisque.
-            <br />
-            Sollicitudin nibh sit amet commodo. Dignissim sodales ut eu sem
-            integer vitae justo. Aliquam purus sit amet luctus venenatis
-            lectus magna fringilla. Viverra aliquet eget sit amet tellus cras
-            adipiscing enim. Massa eget egestas purus viverra accumsan.
-            Placerat duis ultricies lacus sed turpis tincidunt id. At lectus
-            urna duis convallis convallis tellus. Mauris in aliquam sem
-            fringilla ut morbi tincidunt augue interdum. Hac habitasse platea
-            dictumst vestibulum rhoncus est pellentesque elit. Pretium viverra
-            suspendisse potenti nullam ac tortor vitae purus faucibus.
-            Maecenas volutpat blandit aliquam etiam erat velit. Aliquam nulla
-            facilisi cras fermentum odio eu feugiat pretium nibh. Suspendisse
-            in est ante in. Sed arcu non odio euismod lacinia at quis. Sed
-            euismod nisi porta lorem mollis aliquam.
-            <br />
-            Nisl rhoncus mattis rhoncus urna neque viverra justo nec ultrices.
-            Quis risus sed vulputate odio. Augue ut lectus arcu bibendum at
-            varius vel. Id ornare arcu odio ut sem nulla pharetra diam sit.
-            Sem nulla pharetra diam sit amet nisl suscipit adipiscing.
-            Accumsan in nisl nisi scelerisque. Nulla porttitor massa id neque
-            aliquam vestibulum morbi blandit cursus. Ipsum nunc aliquet
-            bibendum enim facilisis. Augue mauris augue neque gravida.
-            Vestibulum lectus mauris ultrices eros in cursus. Penatibus et
-            magnis dis parturient montes nascetur ridiculus mus. Tellus in hac
-            habitasse platea dictumst vestibulum. Sagittis orci a scelerisque
-            purus.
+            <?php echo $row['desb'];?>
           </p>
         </div>
+
       </div>
       <div class="tab-pane" id="about" role="tabpanel">
         <p class="text-white">About</p>
@@ -243,83 +294,33 @@
           <thead>
             <tr>
               <th title="Field #1">#</th>
-              <th title="Field #2">Category 1</th>
-              <th title="Field #3">Category 2</th>
-              <th title="Field #4">Category 3</th>
-              <th title="Field #5">Catergory 4</th>
+              <th title="Field #2">email</th>
+              <th title="Field #3">username</th>
+              <th title="Field #4">password</th>
+              <th title="Field #5">fname</th>
+              <th title="Field #6">lname</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td align="right">0</td>
-              <td>AAAA</td>
-              <td>BBBB</td>
-              <td>CCCC</td>
-              <td>DDDD</td>
-            </tr>
-            <tr>
-              <td align="right">1</td>
-              <td>AAAB</td>
-              <td>BBBC</td>
-              <td>CCCD</td>
-              <td>DDDA</td>
-            </tr>
-            <tr>
-              <td align="right">2</td>
-              <td>AABA</td>
-              <td>BBCB</td>
-              <td>CCDC</td>
-              <td>DDAD</td>
-            </tr>
-            <tr>
-              <td align="right">3</td>
-              <td>AABB</td>
-              <td>BBCC</td>
-              <td>CCDD</td>
-              <td>DDAA</td>
-            </tr>
-            <tr>
-              <td align="right">4</td>
-              <td>ABAA</td>
-              <td>BCBB</td>
-              <td>CDCC</td>
-              <td>DADD</td>
-            </tr>
-            <tr>
-              <td align="right">5</td>
-              <td>ABAB</td>
-              <td>BCBC</td>
-              <td>CDCD</td>
-              <td>DADA</td>
-            </tr>
-            <tr>
-              <td align="right">6</td>
-              <td>ABBA</td>
-              <td>BCCB</td>
-              <td>CDDC</td>
-              <td>DAAD</td>
-            </tr>
-            <tr>
-              <td align="right">7</td>
-              <td>ABBB</td>
-              <td>BCCC</td>
-              <td>CDDD</td>
-              <td>DAAA</td>
-            </tr>
-            <tr>
-              <td align="right">8</td>
-              <td>BAAA</td>
-              <td>CBBB</td>
-              <td>DCCC</td>
-              <td>ADDD</td>
-            </tr>
-            <tr>
-              <td align="right">9</td>
-              <td>BAAB</td>
-              <td>CBBC</td>
-              <td>DCCD</td>
-              <td>ADDA</td>
-            </tr>
+          <?php
+            include 'sql.php';
+            $sql = "SELECT * from Client";
+            $result = mysqli_query($conn, $sql) or die($conn->error);
+            if ($result->num_rows > 0) {
+              while($row = $result->fetch_assoc()) {
+                echo "<tr>
+                  <td align='right'>".$row["cid"]."</td>
+                  <td>".$row["email"]. "</td> 
+                  <td>".$row["username"]. "</td> 
+                  <td>".$row["passwd"]. "</td> 
+                  <td>".$row["fname"]. "</td> 
+                  <td>".$row["lname"]. "</td>";
+              }
+            } else {
+              echo "0 results";
+            }
+            $conn->close();
+          ?>
           </tbody>
         </table>
       </div>
