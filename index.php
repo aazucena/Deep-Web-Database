@@ -68,8 +68,8 @@
     <h5 class="text-white">Signed in as: <?php echo $_COOKIE["user"];?></h5>
     <hr class="text-white bg-white" />
     <a href="profile.php" class="list-group-item bg-dark text-logored border-logored">Your Profile</a>
-    <a href="productlist.html" class="list-group-item bg-dark text-logored border-logored">Your Products</a>
-    <a href="orders.html" class="list-group-item bg-dark text-logored border-logored">Your Orders</a>
+    <a href="productlist.php" class="list-group-item bg-dark text-logored border-logored">Your Products</a>
+    <a href="orders.php" class="list-group-item bg-dark text-logored border-logored">Your Orders</a>
     <hr class="text-white bg-white" />
     <a href="#account" role="tab" data-toggle="modal" class="list-group-item bg-dark text-logored border-logored">Switch
       Accounts</a>

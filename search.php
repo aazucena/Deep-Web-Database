@@ -20,7 +20,7 @@
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark nav-pills sticky-top">
     <a class="navbar-brand" href="index.php">
-      <img src="/Images&Videos/logo-alt.png" width="50" height="50" alt="" />
+      <img src="Images&Videos/logo-alt.png" width="50" height="50" alt="" />
       The Underground</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navToggler"
       aria-controls="navToggler" aria-expanded="false" aria-label="Open Menu">
@@ -90,8 +90,8 @@
     <h5 class="text-white">Signed in as: <?php echo $_COOKIE["user"];?></h5>
     <hr class="text-white bg-white" />
     <a href="profile.php" class="list-group-item bg-dark text-logored border-logored">Your Profile</a>
-    <a href="productlist.html" class="list-group-item bg-dark text-logored border-logored">Your Products</a>
-    <a href="orders.html" class="list-group-item bg-dark text-logored border-logored">Your Orders</a>
+    <a href="productlist.php" class="list-group-item bg-dark text-logored border-logored">Your Products</a>
+    <a href="orders.php" class="list-group-item bg-dark text-logored border-logored">Your Orders</a>
     <hr class="text-white bg-white" />
     <a href="#account" role="tab" data-toggle="modal" class="list-group-item bg-dark text-logored border-logored">Switch
       Accounts</a>
@@ -142,7 +142,7 @@
 						<img class='img-fluid w-100' src='data:image/jpeg;base64,".base64_encode( $value['prodimg'] )."' alt='Product Image'>
 							<div class='card-body'>
               <h5 class='card-title'>
-                <a href='product.php?pid=".$value['pid']."&cat=".$c."'>".$value['pname']."</a>
+                <a href='product.php?pid=".$value['pid']."&cat=".$value['cat']."'>".$value['pname']."</a>
               </h5>
 						</div>
             </div>
