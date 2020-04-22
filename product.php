@@ -1,0 +1,851 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<!--Meta-->
+<meta charset="UTF8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<!--Internal Files-->
+<link rel="stylesheet" href="style.css" />
+<!--External Files-->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+  integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.15.5/dist/bootstrap-table.min.css" />
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+
+<head>
+  <title>Underground | Kinder Surprise</title>
+  <link rel="icon" type="image/png" href="Images&Videos/logo-alt.png" />
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark nav-pills sticky-top">
+    <a class="navbar-brand" href="index.php">
+      <img src="Images&Videos/logo-alt.png" width="50" height="50" alt="" />
+      The Underground</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navToggler"
+      aria-controls="navToggler" aria-expanded="false" aria-label="Open Menu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="justify-content-end" style="width: 60%">      
+      <form method="GET" action="search.php" role="search">
+        <div class="form-group input-group mb-3">
+          <input type="text" class="field form-control w-50" placeholder="Search here..." name="entity"
+          aria-label="entity" aria-describedby="entity-search" value="" />
+          <select class="form-control border" id="categories" name="cat">
+            <option selected value="">All Catergories</option>
+            <option value="H">Hitmen</option>
+            <option value="E">Exotics</option>
+            <option value="S">Substances</option>
+            <option value="W">Weapons</option>
+          </select>
+          <div class="input-group-append">
+          <button class="btn btn-secondary btn-search" id="searchsubmit" name="ssubmit" type="submit">
+            Search
+          </button>
+          </div>
+            </div>
+        </form>
+    </div>
+    <div class="collapse navbar-collapse justify-content-end">
+      <ul class="nav justify-content-center">
+        <li class="nav-item">
+          <a class="nav-link active border-0 btn-outline-light" href="#home" role="tab" data-toggle="list">Home <span
+              class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link border-0 btn-outline-light" href="#about" role="tab" data-toggle="list">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link border-0 btn-outline-light" href="#view" role="tab" data-toggle="list">View</a>
+        </li>
+      </ul>
+    </div>
+    <?php
+      if(isset($_COOKIE["logged"]) || $_COOKIE["logged"] === true) {
+          echo'
+          <ul class="nav justify-content-end">
+            <li class="nav-item">
+              <a class="nav-link border-0 btn btn-sm btn-circle btn-outline-light d-flex justify-content-center align-items-center"
+                style="overflow: hidden;" data-container="body" data-toggle="popover" data-placement="bottom">
+                <img class="img-responsive rounded" src="Images&Videos/logo-alt2.png" style="
+                object-fit: cover; width: 40px; margin-right: 5px;">
+              </a>
+            </li>
+          </ul>
+          ';
+      } else {
+          echo '
+          <ul class="nav justify-content-end">
+            <li class="nav-item">
+              <a class="nav-link border-0 btn btn-sm btn-circle btn-outline-light d-flex justify-content-center align-items-center"
+                style="overflow: hidden;" href="#account" role="tab" data-toggle="modal" title="Sign Up/Log In"><i class="fa fa-user"
+                  style="font-size: 1.8em;"></i></a>
+            </li>
+          </ul>
+          ';
+      }
+      ?>
+  </nav>
+  <ul id="popover-content" class="list-group bg-dark border-logored" style="display: none">
+    <h5 class="text-white">Signed in as: <?php echo $_COOKIE["user"];?></h5>
+    <hr class="text-white bg-white" />
+    <a href="profile.php" class="list-group-item bg-dark text-logored border-logored">Your Profile</a>
+    <a href="productlist.php" class="list-group-item bg-dark text-logored border-logored">Your Products</a>
+    <a href="orders.php" class="list-group-item bg-dark text-logored border-logored">Your Orders</a>
+    <hr class="text-white bg-white" />
+    <a href="#account" role="tab" data-toggle="modal" class="list-group-item bg-dark text-logored border-logored">Switch
+      Accounts</a>
+    <a href="logout.php" class="list-group-item bg-dark text-logored border-logored">Sign Out</a>
+  </ul>
+  <div class="pos-f-t">
+    <div class="collapse" id="navToggler">
+      <div class="list-group list-group-horizontal list-group-dark" id="navList" role="tablist">
+        <a href="#home" class="list-group-item list-group-item-dark list-group-item-action" role="tab"
+          data-toggle="list">Home <span class="sr-only">(current)</span></a>
+        <a href="#about" class="list-group-item list-group-item-dark list-group-item-action" role="tab"
+          data-toggle="list">About</a>
+        <a href="#view" class="list-group-item list-group-item-dark list-group-item-action" role="tab"
+          data-toggle="list">View Table</a>
+      </div>
+    </div>
+  </div>
+  <div class="position-absolute w-100">
+    <div class="tab-content">
+      <div class="tab-pane active pt-3" id="home" role="tabpanel">
+        <?php
+          include 'sql.php';
+          $sql=$result=$row="";
+          $cat=$_GET['cat'];
+          $pid=$_GET['pid'];
+          switch($cat){
+            case 'H':
+              $sql = "SELECT * FROM Product p JOIN Hitmen h ON p.pid=h.pid WHERE p.pid=$pid LIMIT 1";
+              break;
+            case 'E':
+              $sql = "SELECT * FROM Product p 
+              JOIN Exotics e ON p.pid=e.pid 
+              JOIN ProductType pt ON e.pid=pt.pid 
+              WHERE p.pid=$pid LIMIT 1";
+              break;
+            case 'S':
+              $sql = "SELECT * FROM Product p JOIN Substances s ON p.pid=s.pid WHERE p.pid=$pid LIMIT 1";
+              break;
+            case 'W':
+              $sql = "SELECT * FROM Product p JOIN Weapons w ON p.pid=w.pid WHERE p.pid=$pid LIMIT 1";
+              break;
+            }
+          $result = mysqli_query($conn,$sql) or die($conn->error);
+          $row = mysqli_fetch_array($result);
+          $nprice = ($row['disctpct']/100) * $row['price'];
+          $dprice = $row['price'] - ($nprice);
+        ?>
+        <div class="p-3 text-white">
+          <div class="row">
+            <div class="col-4 overflow-hidden">
+              <img class="img-responsive w-100"
+                src="https://az836796.vo.msecnd.net/media/image/product/en/medium/0006202000005.jpg"
+                alt="Kinder Surprise" />
+            </div>
+            <div class="col-5">
+              <h1><?php echo $row['pname'];?></h1>
+              <span class="lead"><?php echo $row['pwhy'];?></span>
+              <hr class="text-white bg-white" />
+              <div class="lead">Condition: <span id="cond"><?php echo $row['cond'];?></span></div>
+              <br />
+              <div class="input-group w-50">
+                <div class="input-group-prepend">
+                  <span class="lead bg-transparent border-0 text-white mr-3 mt-1" id="qt">Quantity</span>
+                </div>
+                <input type="text" class="form-control p-3 rounded-0" name="qt" value="1" aria-describedby="qt" />
+              </div>
+              <br />
+              <?php
+              switch($cat){
+                case 'H':
+                  echo"<div class='lead'>Hitman Name: <span id='hname'>".$row['hitname']."</span></div>";
+                  echo"<div class='lead'>Hitman's Email: <span id='hemail'><a href='mailto:".$row['hemail']."'>".$row['hemail']."</a></span></div>";
+                  echo"<div class='lead'>Gender: <span id='g'>".$row['gender']."</span></div>";
+                  echo"<div class='lead'>Job Type: <span id='htype'>".$row['request']."</span></div>";
+                  echo"<div class='lead'>Rate: <span id='rate'>".$row['rate']."</span></div>";
+                  break;
+                case 'E':
+                  $ssql = "SELECT * FROM ProductType WHERE pid=$pid";
+                  $r = mysqli_query($conn,$ssql) or die($conn->error);
+
+                  echo"<div class='lead'>Exotic Type: <span id='etype'>".$row['exotype']."</span></div><br>";
+                  echo "
+                  <span class='lead'>Product Type</span>
+                  <div class='btn-group-toggle' data-toggle='buttons' id='protypes'>";
+                  while($rec = mysqli_fetch_array($r)){
+                    echo "
+                    <label class='btn btn-dark'>
+                      <input type='radio' name='options' autocomplete='off' />".$rec['ptypename']."
+                    </label>";
+                  }
+                  echo "</div> ";
+                  break;
+                case 'S':
+                  $gr="";
+                  echo"<div class='lead'>Substances Type: <span id='stype'>".$row['stype']."</span></div>";
+                  echo"<div class='lead'>Weight(Grams): <span id='stype'>".$row['gram']."</span></div>";
+                  if($row['grade']=="U"){
+                    $gr="N/A";
+                  }
+                  else{
+                    $gr = $row['grade'];
+                  }
+                  echo"<div class='lead'>Weight(Grams): <span id='stype'>".$gr."</span></div>";
+                  break;
+                case 'W':
+                  $weapon="";
+                  switch($row['wtype']){
+                    case 'F':
+                      $weapon="Firearms/Ranged";
+                      break;
+                    case 'E':
+                      $weapon="Explosives";
+                      break;
+                    case 'M':
+                      $weapon="Melee";
+                      break;
+                    case 'C':
+                      $weapon="Chemical/Biological/Nuclear";
+                      break;
+                    case 'U':
+                      $weapon="Miscellenous";
+                      break;
+                  }
+                    echo"<div class='lead'>Weapons Type: <span id='wtype'>".$weapon."</span></div>";
+                  break;
+                }
+              ?>
+              <hr class="text-white bg-white" />
+              <div class="clearfix">
+                <div class="lead float-left">
+                  Deal Price: <span id="price"><?php echo $dprice;?>BTC</span><small class="">(<b id="dsct"><?php echo $row['disctpct'];?>%</b> Off!)</small><br />
+                  Before Price: <del><?php echo $row['price'];?>BTC</del><br />
+                  You Save: <span><?php echo $nprice;?>BTC</span>
+                </div>
+                <div class="float-right">
+                  <input type="submit" class="btn btn-secondary rounded-0 bg-logored pl-3 pr-3" name="order"
+                    value="Order Now" />
+                </div>
+              </div>
+              <hr class="text-white bg-white" />
+              <div class="lead">
+                Pickup Location: Dildo, Newfoundland, Canada
+              </div>
+              <div class="lead">Payment: Cryptocurrency (Bitcoin etc.)</div>
+              <div class="lead">Returns: NONE</div>
+            </div>
+            <div class="col">
+              <div class="card bg-transparent border border-logored" style="width: 18rem;">
+                <div class="card-body">
+                  <h6 class="card-subtitle mb-2"></h6>
+                  <div class="card-text">
+                    <?php
+                      $stock = $row['instock'];
+                      if($stock<=0){
+                        echo "Out Of Stock";
+                      }
+                      else if($stock > 0 && $stock <=10){
+                        echo "Only ".$stock." left in stock";
+                        
+                      }
+                      else{
+                        echo "In Stock";
+                      }
+                    ?> 
+                  </div>
+                  <hr class="text-white bg-white" />
+                  <?php
+                    $cli="SELECT * FROM Client WHERE cid=".$row['cid']."";
+                    $re = mysqli_query($conn,$cli) or die($conn->error);
+                    $rec = mysqli_fetch_array($re);
+                  ?>
+                  <a href="<?php echo "mailto:".$rec['email'];?>" class="card-link">Contact Seller</a>
+                  <div class="card-text">
+                    Posted <span id="timestamp">6</span> hours ago
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <?php 
+          if($cat=='H'){
+            echo "<hr class='text-white bg-white' />
+            <h2>Hitman Requirements</h2>".$row['req'];
+          }
+          ?>
+          <hr class="text-white bg-white" />
+          <h2>Product Description</h2>
+          <p class="lead" id="desc">
+            <?php echo $row['desb'];?>
+          </p>
+        </div>
+
+      </div>
+      <div class="tab-pane" id="about" role="tabpanel">
+        <p class="text-white">About</p>
+      </div>
+      <div class="tab-pane" id="view" role="tabpanel">
+        <p>View</p>
+        <table class="table table-bordered table-hover table-sm table-condensed bg-white">
+          <thead>
+            <tr>
+              <th title="Field #1">#</th>
+              <th title="Field #2">email</th>
+              <th title="Field #3">username</th>
+              <th title="Field #4">password</th>
+              <th title="Field #5">fname</th>
+              <th title="Field #6">lname</th>
+            </tr>
+          </thead>
+          <tbody>
+          <?php
+            include 'sql.php';
+            $sql = "SELECT * from Client";
+            $result = mysqli_query($conn, $sql) or die($conn->error);
+            if ($result->num_rows > 0) {
+              while($row = $result->fetch_assoc()) {
+                echo "<tr>
+                  <td align='right'>".$row["cid"]."</td>
+                  <td>".$row["email"]. "</td> 
+                  <td>".$row["username"]. "</td> 
+                  <td>".$row["passwd"]. "</td> 
+                  <td>".$row["fname"]. "</td> 
+                  <td>".$row["lname"]. "</td>";
+              }
+            } else {
+              echo "0 results";
+            }
+            $conn->close();
+          ?>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <!---Registration & Login-->
+  <div class="modal fade" id="account" role="dialog" aria-labelledby="regristration" aria-hidden="true"
+    data-backdrop="static">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content bg-dark text-white">
+        <div class="modal-tabs">
+          <ul class="nav nav-tabs md-tabs" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active border-0 btn-outline-light" data-toggle="tab" href="#login" role="tab"><i
+                  class="fa fa-user mr-1"></i> Login</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link border-0 btn-outline-light" data-toggle="tab" href="#register" role="tab"><i
+                  class="fa fa-user-plus mr-1"></i> Register</a>
+            </li>
+          </ul>
+          <div class="tab-content">
+            <div class="tab-pane fade in show active" id="login" role="tabpanel">
+              <div class="modal-body mb-1">
+                <form method="POST" action="login.php" role="form">
+                  <div class="form-group">
+                    <div class="md-form form-sm input-group mt-5 mb-5">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text" id="eEmail"><i class="fa fa-envelope prefix"></i></span>
+                      </div>
+                      <input type="email" id="Email" class="form-control form-control-sm validate"
+                        placeholder="Email Address" required />
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="md-form form-sm input-group mb-4">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text" id="ePass">
+                          <i class="fa fa-lock prefix"></i>
+                        </span>
+                      </div>
+                      <input type="password" id="Pass" class="form-control form-control-sm validate"
+                        placeholder="Password" required />
+                    </div>
+                  </div>
+                  <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input" id="keepme">
+                    <label class="form-check-label" for="#keepme">Keep me signed in</label>
+                  </div>
+                  <div class="text-center mt-2">
+                    <button class="btn btn-light">
+                      Log in <i class="fa fa-sign-in ml-1"></i>
+                    </button>
+                  </div>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <div class="options text-center text-md-right mt-1">
+                  <p>
+                    Not a member?
+                    <a href="#register" class="blue-text">Sign Up</a>
+                  </p>
+                  <p><a href="forgot_password.html" class="blue-text">Forgot Password?</a></p>
+                </div>
+                <button type="button" class="btn btn-outline-light waves-effect ml-auto" data-dismiss="modal">
+                  Close
+                </button>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="register" role="tabpanel">
+              <div class="modal-body">
+                <form method="POST" action="register.php" role="form" id="fregister"
+enctype="multipart/form-data">
+                  <div class="form-group">
+                    <div class="md-form form-sm input-group mt-5 mb-4">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text" name="nemail" id="nEmail"><i class="fa fa-envelope prefix"></i></span>
+                      </div>
+                      <input type="email" id="newEmail" name="nemail" class="form-control form-control-sm validate"
+                        placeholder="New Email Address" required />
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="md-form form-sm input-group mb-4">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text" id="nUser"><i class="fa fa-user-circle-o prefix"></i></span>
+                      </div>
+                      <input type="text" id="username" name="nuser" class="form-control form-control-sm validate rounded-right"
+                        placeholder="Username" aria-describedby="userHelpInline" required />
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col">
+                      <div class="form-group">
+                        <div class="md-form form-sm input-group mb-4">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text" id="nFName"><i class="fa fa-user-o prefix"></i></span>
+                          </div>
+                          <input type="text" id="fname" name="fname" class="form-control form-control-sm validate"
+                            placeholder="First Name (Optional)" />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col">
+                      <div class="form-group">
+                        <div class="md-form form-sm input-group mb-4">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text" id="nLName"><i class="fa fa-user-o prefix"></i></span>
+                          </div>
+                          <input type="text" id="lname" name="lname" class="form-control form-control-sm validate"
+                            placeholder="Last Name (Optional)" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="md-form form-sm input-group mb-4">
+                      <div class="input-group-prepend mx">
+                        <span class="input-group-text" id="nPass">
+                          <i class="fa fa-lock prefix"></i>
+                        </span>
+                      </div>
+                      <input type="password" id="newPass" name="npass"
+                        class="form-control form-control-sm validate mx-sm rounded-right" placeholder="New Password"
+                        aria-describedby="passwordHelpInline" required />
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="md-form form-sm input-group mb-4">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text" id="cPass">
+                          <i class="fa fa-lock prefix"></i>
+                        </span>
+                      </div>
+                      <input type="password" id="confirmPass" name="cpass" class="form-control form-control-sm validate"
+                        placeholder="Confirm Password" required />
+                    </div>
+                  </div>
+                  <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input" name="ragree" id="tc" required>
+                    <label class="form-check-label" for="#tc">
+                      <a href="#termsandconditions" data-toggle="modal" role="tab">
+                        Agree to Terms & Conditions
+                      </a>
+                    </label>
+                  </div>
+                  <div class="text-center form-sm mt-2">
+                    <button class="btn btn-light" type="submit" form="fregister" name="reg">
+                      Sign up <i class="fa fa-sign-in ml-1"></i>
+                    </button>
+                  </div>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <div class="options text-right">
+                  <p class="pt-1">
+                    Already have an account?
+                    <a href="#register" class="blue-text">Log In</a>
+                  </p>
+                </div>
+                <button type="button" class="btn btn-outline-light waves-effect ml-auto" data-dismiss="modal">
+                  Close
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--TOS-->
+    <div class="modal fade" id="termsandconditions" tabindex="-1" role="dialog" aria-labelledby="termsandconditions"
+      aria-hidden="true">
+      <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
+        <div class="modal-content bg-dark text-white">
+          <div class="modal-header">
+            <h5 class="modal-title">Terms and Conditions</h5>
+          </div>
+          <div class="modal-body">
+            <h2>Welcome to Underground</h2>
+            <p>
+              These terms and conditions outline the rules and regulations for
+              the use of Underground's Website.
+            </p>
+            <br />
+            <span style="text-transform: capitalize;"> Underground</span> is
+            located at:<br />
+            <address>
+              Unknown Nowhere, Dildo <br />XXX XXX - Newfoundland , Canada<br />
+            </address>
+            <p>
+              By accessing this website we assume you accept these terms and
+              conditions in full. Do not continue to use Underground's website
+              if you do not accept all of the terms and conditions stated on
+              this page.
+            </p>
+            <p>
+              The following terminology applies to these Terms and Conditions,
+              Privacy Statement and Disclaimer Notice and any or all
+              Agreements: "Client", "You" and "Your" refers to you, the person
+              accessing this website and accepting the Company's terms and
+              conditions. "The Company", "Ourselves", "We", "Our" and "Us",
+              refers to our Company. "Party", "Parties", or "Us", refers to
+              both the Client and ourselves, or either the Client or
+              ourselves. All terms refer to the offer, acceptance and
+              consideration of payment necessary to undertake the process of
+              our assistance to the Client in the most appropriate manner,
+              whether by formal meetings of a fixed duration, or any other
+              means, for the express purpose of meeting the Client's needs in
+              respect of provision of the Company's stated services/products,
+              in accordance with and subject to, prevailing law of Canada. Any
+              use of the above terminology or other words in the singular,
+              plural, capitalisation and/or he/she or they, are taken as
+              interchangeable and therefore as referring to same.
+            </p>
+            <h2>Cookies</h2>
+            <p>
+              We employ the use of cookies. By using Underground's website you
+              consent to the use of cookies in accordance with Underground's
+              privacy policy.
+            </p>
+            <p>
+              Most of the modern day interactive web sites use cookies to
+              enable us to retrieve user details for each visit. Cookies are
+              used in some areas of our site to enable the functionality of
+              this area and ease of use for those people visiting. Some of our
+              affiliate / advertising partners may also use cookies.
+            </p>
+            <h2>License</h2>
+            <p>
+              Unless otherwise stated, Underground and/or it's licensors own
+              the intellectual property rights for all material on
+              Underground. All intellectual property rights are reserved. You
+              may view and/or print pages from http://underground.onion for
+              your own personal use subject to restrictions set in these terms
+              and conditions.
+            </p>
+            <p>You must not:</p>
+            <ol>
+              <li>Republish material from http://underground.onion</li>
+              <li>
+                Sell, auction or sub-license material from
+                http://underground.onion
+              </li>
+              <li>
+                Reproduce, duplicate or copy material from
+                http://underground.onion
+              </li>
+            </ol>
+            <p>
+              Redistribute content from Underground (unless content is
+              specifically made for redistribution).
+            </p>
+            <h2>User Comments</h2>
+            <ol>
+              <li>This Agreement shall begin on the date hereof.</li>
+              <li>
+                Certain parts of this website offer the opportunity for users
+                to post and exchange opinions, information, material and data
+                ('Comments') in areas of the website. Underground does not
+                screen, edit, publish or review Comments prior to their
+                appearance on the website and Comments do not reflect the
+                views or opinions ofUnderground, its agents or affiliates.
+                Comments reflect the view and opinion of the person who posts
+                such view or opinion. To the extent permitted by our
+                applicable laws Underground shall not be responsible or liable
+                for the Comments or for any loss cost, liability, damages or
+                expenses caused and or suffered as a result of any use of
+                and/or posting of and/or appearance of the Comments on this
+                website.
+              </li>
+              <li>
+                Undergroundreserves the right to monitor all Comments and to
+                remove any Comments which it considers in its absolute
+                discretion to be inappropriate, offensive or otherwise in
+                breach of these Terms and Conditions.
+              </li>
+              <li>
+                You warrant and represent that:
+                <ol>
+                  <li>
+                    You are entitled to post the Comments on our website and
+                    have all necessary licenses and consents to do so;
+                  </li>
+                  <li>
+                    The Comments do not infringe any intellectual property
+                    right, including without limitation copyright, patent or
+                    trademark, or other proprietary right of any third party;
+                  </li>
+                  <li>
+                    The Comments do not contain any defamatory, libelous,
+                    offensive, indecent or otherwise unacceptable material or
+                    material which is an invasion of privacy
+                  </li>
+                  <li>
+                    The Comments will not be used to solicit or promote
+                    business or custom or present commercial activities or
+                    unacceptable activity.
+                  </li>
+                </ol>
+              </li>
+              <li>
+                You hereby grant to <strong>Underground</strong> a
+                non-exclusive royalty-free license to use, reproduce, edit and
+                authorize others to use, reproduce and edit any of your
+                Comments in any and all forms, formats or media.
+              </li>
+            </ol>
+            <h2>Hyperlinking to our Content</h2>
+            <ol>
+              <li>
+                The following organizations may link to our Web site without
+                prior written approval:
+                <ol>
+                  <li>Contraband agencies;</li>
+                  <li>Search engines;</li>
+                  <li>News organizations;</li>
+                  <li>
+                    Online directory distributors when they list us in the
+                    directory may link to our Web site in the same manner as
+                    they hyperlink to the Web sites of other listed
+                    businesses; and
+                  </li>
+                  <li>
+                    Systemwide Accredited Businesses except soliciting
+                    non-profit organizations, charity shopping malls, and
+                    charity fundraising groups which may not hyperlink to our
+                    Web site.
+                  </li>
+                </ol>
+              </li>
+            </ol>
+            <ol start="2">
+              <li>
+                These organizations may link to our home page, to publications
+                or to other Web site information so long as the link: (a) is
+                not in any way misleading; (b) does not falsely imply
+                sponsorship, endorsement or approval of the linking party and
+                its products or services; and (c) fits within the context of
+                the linking party's site.
+              </li>
+              <li>
+                We may consider and approve in our sole discretion other link
+                requests from the following types of organizations:
+                <ol>
+                  <li>Organizations that are willing to break the law;</li>
+                  <li>dot.com community sites;</li>
+                  <li>
+                    associations or other groups representing charities,
+                    including charity giving sites,
+                  </li>
+                  <li>online directory distributors;</li>
+                  <li>internet portals;</li>
+                  <li>
+                    accounting, law and consulting firms whose primary clients
+                    are businesses; and
+                  </li>
+                  <li>educational institutions and trade associations.</li>
+                </ol>
+              </li>
+            </ol>
+            <p>
+              We will approve link requests from these organizations if we
+              determine that: (a) the link would not reflect unfavorably on us
+              or our accredited businesses (for example, trade associations or
+              other organizations representing inherently suspect types of
+              business, such as work-at-home opportunities, shall not be
+              allowed to link); (b)the organization does not have an
+              unsatisfactory record with us; (c) the benefit to us from the
+              visibility associated with the hyperlink outweighs the absence
+              of Underground; and (d) where the link is in the context of
+              general resource information or is otherwise consistent with
+              editorial content in a newsletter or similar product furthering
+              the mission of the organization.
+            </p>
+
+            <p>
+              These organizations may link to our home page, to publications
+              or to other Web site information so long as the link: (a) is not
+              in any way misleading; (b) does not falsely imply sponsorship,
+              endorsement or approval of the linking party and it products or
+              services; and (c) fits within the context of the linking party's
+              site.
+            </p>
+
+            <p>
+              If you are among the organizations listed in paragraph 2 above
+              and are interested in linking to our website, you must notify us
+              by sending an e-mail to
+              <a href="mailto:S3CR3T@underground.onion"
+                title="send an email to S3CR3T@underground.onion">S3CR3T@underground.onion</a>. Please include your
+              name, your organization name, contact
+              information (such as a phone number and/or e-mail address) as
+              well as the URL of your site, a list of any URLs from which you
+              intend to link to our Web site, and a list of the URL(s) on our
+              site to which you would like to link. Allow 2-3 weeks for a
+              response.
+            </p>
+
+            <p>
+              Approved organizations may hyperlink to our Web site as follows:
+            </p>
+
+            <ol>
+              <li>By use of our corporate name; or</li>
+              <li>
+                By use of the uniform resource locator (Web address) being
+                linked to; or
+              </li>
+              <li>
+                By use of any other description of our Web site or material
+                being linked to that makes sense within the context and format
+                of content on the linking party's site.
+              </li>
+            </ol>
+            <p>
+              No use of Underground's logo or other artwork will be allowed
+              for linking absent a trademark license agreement.
+            </p>
+            <h2>Iframes</h2>
+            <p>
+              Without prior approval and express written permission, you may
+              not create frames around our Web pages or use other techniques
+              that alter in any way the visual presentation or appearance of
+              our Web site.
+            </p>
+            <h2>Reservation of Rights</h2>
+            <p>
+              We reserve the right at any time and in its sole discretion to
+              request that you remove all links or any particular link to our
+              Web site. You agree to immediately remove all links to our Web
+              site upon such request. We also reserve the right to amend these
+              terms and conditions and its linking policy at any time. By
+              continuing to link to our Web site, you agree to be bound to and
+              abide by these linking terms and conditions.
+            </p>
+            <h2>Removal of links from our website</h2>
+            <p>
+              If you find any link on our Web site or any linked web site
+              objectionable for any reason, you may contact us about this. We
+              will consider requests to remove links but will have no
+              obligation to do so or to respond directly to you.
+            </p>
+            <p>
+              Whilst we endeavour to ensure that the information on this
+              website is correct, we do not warrant its completeness or
+              accuracy; nor do we commit to ensuring that the website remains
+              available or that the material on the website is kept up to
+              date.
+            </p>
+            <h2>Content Liability</h2>
+            <p>
+              We shall have no responsibility or liability for any content
+              appearing on your Web site. You agree to indemnify and defend us
+              against all claims arising out of or based upon your Website. No
+              link(s) may appear on any page on your Web site or within any
+              context containing content or materials that may be interpreted
+              as libelous, obscene or criminal, or which infringes, otherwise
+              violates, or advocates the infringement or other violation of,
+              any third party rights.
+            </p>
+            <h2>Disclaimer</h2>
+            <p>
+              To the maximum extent permitted by our applicable rules, we
+              exclude all representations, warranties and conditions relating
+              to our website and the use of this website (including, without
+              limitation, any warranties implied by law in respect of
+              satisfactory quality, fitness for purpose and/or the use of
+              reasonable care and skill). Nothing in this disclaimer will:
+            </p>
+            <ol>
+              <li>
+                limit or exclude our or your liability for death or personal
+                injury resulting from negligence;
+              </li>
+              <li>
+                limit or exclude our or your liability for fraud or fraudulent
+                misrepresentation;
+              </li>
+              <li>
+                limit any of our or your liabilities in any way that is not
+                permitted under our rules; or
+              </li>
+              <li>
+                exclude any of our or your liabilities that may not be
+                excluded under our rules.
+              </li>
+            </ol>
+            <p>
+              The limitations and exclusions of liability set out in this
+              Section and elsewhere in this disclaimer: (a) are subject to the
+              preceding paragraph; and (b) govern all liabilities arising
+              under the disclaimer or in relation to the subject matter of
+              this disclaimer, including liabilities arising in contract, in
+              tort (including negligence) and for breach of statutory duty.
+            </p>
+            <p>
+              To the extent that the website and the information and services
+              on the website are provided free of charge, we will not be
+              liable for any loss or damage of any nature.
+            </p>
+            <h2></h2>
+            <p></p>
+          </div>
+          <div class="modal-footer text-center">
+            <div class="text-center">
+              <em class="text-center">© 2020 Copyright: Underground.onion</em>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+<!--Javascript-->
+<!--External Files-->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+  integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+  integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/bootstrap-table@1.15.5/dist/bootstrap-table.min.js"></script>
+<script src="https://unpkg.com/bootstrap-table@1.15.5/dist/locale/bootstrap-table-zh-CN.min.js"></script>
+<!--Internal Files-->
+<script src="JavaScript/index.js"></script>
+
+</html>
